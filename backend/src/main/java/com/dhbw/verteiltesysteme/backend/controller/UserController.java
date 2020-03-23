@@ -3,8 +3,12 @@ package com.dhbw.verteiltesysteme.backend.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dhbw.verteiltesysteme.backend.entities.User;
 import com.dhbw.verteiltesysteme.backend.repositories.UserRepositories;
+
 //User Controller
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -21,24 +27,40 @@ public class UserController {
 	@Autowired
 	UserRepositories repository;
 	
+
 	@GetMapping(path="/all")
 	public @ResponseBody Iterable<User> getAllUsers() {
 		return repository.findAll();
 	}
 	
+/*	
 	@PostMapping(path="/add")
 	public @ResponseBody String addNewUser(@RequestParam String titel, @RequestParam String nachname, @RequestParam String vorname, @RequestParam String passwort, @RequestParam String email, @RequestParam String handynr) {
 		User u = new User(titel, nachname, vorname, passwort, email, handynr);
 		repository.save(u);
 		return "Saved!";
 	}
+*/
+
+    @PostMapping("/add")
+    void addUser(@RequestBody User user) {
+        repository.save(user);
+    }
 	
+
 	@RequestMapping(path="/delete", method= {RequestMethod.DELETE, RequestMethod.POST})
 	public @ResponseBody String delete(@RequestParam int id) {
 		repository.deleteById(id);
 		return "Deleted!";
 	}
 	
+    /*
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable final long id) {
+        repository.deleteById(id);
+    }
+	*/
+	@CrossOrigin
 	@RequestMapping(path="/update", method= {RequestMethod.PATCH, RequestMethod.POST})
 	public @ResponseBody String update(@RequestParam int id, @RequestParam String titel, @RequestParam String nachname, @RequestParam String vorname, @RequestParam String passwort, @RequestParam String email, @RequestParam String handynr) {
 		String message = "Updated!";

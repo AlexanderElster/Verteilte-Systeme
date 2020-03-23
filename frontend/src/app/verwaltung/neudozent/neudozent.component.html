@@ -1,0 +1,38 @@
+
+<div class="card my-5">
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+            <div class="form-group">
+                <label for="titel">{{ "USERTABLE.TITLE" | translate}}</label>
+                <input type="text"  [(ngModel)]="user.titel" class="form-control"
+                    id="titel" name="titel" placeholder="{{ 'USERFORM.PLACEHOLDER.TITEL' | translate}}" required #name="ngModel">
+            </div>
+
+            <div class="form-group">
+                <label for="firstname">{{"USERTABLE.FIRSTNAME" | translate}}</label>
+                <input type="text" [(ngModel)]="user.vorname" class="form-control" id="firstname" name="firstname"
+                    placeholder="{{'USERFORM.PLACEHOLDER.FIRSTNAME' |translate}}" required #name="ngModel">
+            </div>
+            <div [hidden]="!name.pristine && !name.touched" class="alert alert-danger">{{"USERFORM.WARNING.FIRSTNAME" | translate}}</div>
+            <div class="form-group">
+                <label for="lastname">{{"USERTABLE.LASTNAME"|translate}}</label>
+                <input type="text" [(ngModel)]="user.nachname" class="form-control" id="lastname" name="lastname"
+                    placeholder="{{'USERFORM.PLACEHOLDER.LASTNAME' |translate}}" required #name="ngModel">
+            </div>
+            <div [hidden]="!name.pristine" class="alert alert-danger">{{"USERFORM.WARNING.LASTNAME" | translate}}</div>
+            <div class="form-group">
+                <label for="email">{{ "USERTABLE.EMAIL" | translate}}</label>
+                <input type="text" [(ngModel)]="user.email" class="form-control" id="email" name="email"
+                    placeholder="{{'USERFORM.PLACEHOLDER.EMAIL' | translate}}" required #email="ngModel">
+            </div>
+            <div [hidden]="!name.pristine" class="alert alert-danger">{{"USERFORM.WARNING.EMAIL" | translate}}</div>
+            <div class="form-group">
+                <label for="mobile">{{"USERTABLE.MOBILE" | translate}}</label>
+                <input type="text" [(ngModel)]="user.handynr" class="form-control" id="mobile" name="mobile"
+                    placeholder="{{'USERFORM.PLACEHOLDER.MOBILE' | translate}}" required #email="ngModel">
+            </div>
+            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-primary"><i class="fas fa-check"></i>  {{"GENERAL.ADD" | translate}}</button>
+            <a style="margin-left: 20px;" class="btn btn-secondary" routerLink="/dozentenliste"><i class="fas fa-times"></i>  {{"GENERAL.CANCEL" | translate}}</a>
+        </form>
+    </div>
+</div>
