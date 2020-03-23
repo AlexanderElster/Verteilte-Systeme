@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dhbw.verteiltesysteme.backend.entities.User;
 import com.dhbw.verteiltesysteme.backend.repositories.UserRepositories;
-//User
+
+//User Controller
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/user")
