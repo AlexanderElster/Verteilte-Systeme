@@ -11,5 +11,3 @@ constructor(id: number, title: string, nachname: string, vorname: string, passwo
     email: string;
     handynr: string;
 }
-
-//Kurz was testen
