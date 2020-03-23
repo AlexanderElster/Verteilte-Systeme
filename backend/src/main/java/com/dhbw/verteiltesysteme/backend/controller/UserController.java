@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dhbw.verteiltesysteme.backend.entities.User;
 import com.dhbw.verteiltesysteme.backend.repositories.UserRepositories;
-
+//User Controller
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
