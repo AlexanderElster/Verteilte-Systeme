@@ -1,0 +1,31 @@
+{
+    "USERTABLE":{
+        "TITLE":"Titel",
+        "LASTNAME":"Nachname",
+        "FIRSTNAME":"Vorname",
+        "EMAIL": "E-Mail",
+        "MOBILE": "Handynummer",
+        "NEWUSER": "Neuer Dozierender anlegen",
+        "EDIT": "Bearbeiten",
+        "DELETE": "Löschen"
+    },
+    "USERFORM":{
+        "PLACEHOLDER":{
+            "TITEL":"z.B.: Prof. Dr.",
+            "FIRSTNAME": "z.B.: Max",
+            "LASTNAME": "z.B.: Mustermann",
+            "EMAIL": "z.B.: mustermann@mail.de",
+            "MOBILE": "z.B.: 015712345678"
+        },
+        "WARNING":{
+            "FIRSTNAME": "Vorname wird benötigt.",
+            "LASTNAME": "Nachname wird benötigt",
+            "EMAIL": "E-Mail wird benötigt",
+            "MOBILE": "Handynummer wird benötigt"
+        }
+    },
+    "GENERAL":{
+        "ADD": "Hinzufügen",
+        "CANCEL": "Abbrechen" 
+    }
+}

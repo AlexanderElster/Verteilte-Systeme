@@ -1,0 +1,32 @@
+<span> 
+<a class="btn btn-primary anlegen" routerLink="/dozentenliste/neu"><i class="fas fa-plus"></i>   {{ "USERTABLE.NEWUSER" |translate }}</a>
+</span>
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">{{ "USERTABLE.TITLE" | translate}}</th>
+            <th scope="col">{{ "USERTABLE.LASTNAME" | translate}}</th>
+            <th scope="col">{{ "USERTABLE.FIRSTNAME" | translate}}</th>
+            <th scope="col">{{ "USERTABLE.EMAIL" | translate}}</th>
+            <th scope="col">{{ "USERTABLE.MOBILE" | translate}}</th>
+            <th scope="col">{{ "USERTABLE.EDIT" | translate}}</th>
+            <th scope="col">{{ "USERTABLE.DELETE" | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+              <td>{{ user.titel }}</td>
+            <td>{{ user.nachname }}</td>
+            <td>{{ user.vorname }}</td>
+            <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+            <td>{{ user.handynr }}</td>
+            <td><button class="btn btn-secondary" (click)="openUpdateDozent(user)"><i class="fas fa-user-edit"></i></button></td>
+            <td><button class="btn btn-danger" (click)="deleteUser(user)"><i class="fas fa-trash"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
