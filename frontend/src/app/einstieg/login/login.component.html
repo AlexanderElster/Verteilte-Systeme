@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="card" style="width: 20rem; margin-top: 20vh;">
+    <div class="card-body">
+        <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+            <div class="form-group">
+                <label for="email">{{ "LOGIN.EMAIL" | translate}}</label>
+                <input type="text" [(ngModel)]="user.email" class="form-control" id="email" name="email" required
+                    #email="ngModel">
+            </div>
+            <div>
+                <div [hidden]="!email.pristine" class="alert alert-danger">
+                    {{"LOGIN.WARNING.EMAIL" | translate}}</div>
+            </div>
+            <div class="form-group">
+                <label for="password">{{"LOGIN.PASSWORD" | translate}}</label>
+                <input type="text" [(ngModel)]="user.password" class="form-control" id="password" name="password"
+                    required #password="ngModel">
+            </div>
+            <div [hidden]="!password.pristine" class="alert alert-danger">
+                {{"LOGIN.WARNING.PASSWORD" | translate}}</div>
+            <button type="submit" [disabled]="!loginForm.form.valid" class="btn btn-primary">
+                {{"LOGIN.LOGIN" | translate}}</button>
+            <div style="margin-top: 15px;"><a class="btn btn-light">{{"LOGIN.FORGOTPASSWORD" | translate}}</a></div>
+
+        </form>
+    </div>
+</div>

@@ -27,5 +27,16 @@
     "GENERAL":{
         "ADD": "Hinzufügen",
         "CANCEL": "Abbrechen" 
+    },
+    "LOGIN": {
+        "EMAIL": "E-Mail",
+        "PASSWORD": "Passwort",
+        "LOGIN": "Anmelden",
+        "FORGOTPASSWORD": "Passwort vergessen",
+        "WARNING": {
+            "EMAIL": "E-Mail wird benötigt",
+            "PASSWORD": "Passwort wird benötigt"
+        }
+
     }
 }
