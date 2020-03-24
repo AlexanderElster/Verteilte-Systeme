@@ -18,8 +18,7 @@ public class BackendApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/api/user/delete/{id}").allowedOrigins("http://localhost:4200");
-				registry.addMapping("/api/user/update").allowedOrigins("http://localhist:4200");
+				registry.addMapping("/api/user/").allowedOrigins("http://localhost:4200");
 			}
 		};
 	}
