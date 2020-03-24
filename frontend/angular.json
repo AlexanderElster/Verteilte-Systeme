@@ -129,6 +129,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "DHBWfrontend"
+    }
+  },
+  "defaultProject": "DHBWfrontend",
+  "cli": {
+    "analytics": false
+  }
 }
