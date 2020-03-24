@@ -31,15 +31,6 @@ public class UserController {
 	public @ResponseBody Iterable<User> getAllUsers() {
 		return repository.findAll();
 	}
-	
-/*	
-	@PostMapping(path="/add")
-	public @ResponseBody String addNewUser(@RequestParam String titel, @RequestParam String nachname, @RequestParam String vorname, @RequestParam String passwort, @RequestParam String email, @RequestParam String handynr) {
-		User u = new User(titel, nachname, vorname, passwort, email, handynr);
-		repository.save(u);
-		return "Saved!";
-	}
-*/
 
     @PostMapping("/add")
     void addUser(@RequestBody User user) {
@@ -47,18 +38,11 @@ public class UserController {
     }
 	
 
-	@RequestMapping(path="/delete", method= {RequestMethod.DELETE, RequestMethod.POST})
-	public @ResponseBody String delete(@RequestParam int id) {
+	@RequestMapping(path="/delete/{id}", method= {RequestMethod.DELETE, RequestMethod.GET})
+	public void delete(@PathVariable int id) {
 		repository.deleteById(id);
-		return "Deleted!";
 	}
 	
-    /*
-    @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable final long id) {
-        repository.deleteById(id);
-    }
-	*/
 	@CrossOrigin
 	@RequestMapping(path="/update", method= {RequestMethod.PATCH, RequestMethod.POST})
 	public @ResponseBody String update(@RequestParam int id, @RequestParam String titel, @RequestParam String nachname, @RequestParam String vorname, @RequestParam String passwort, @RequestParam String email, @RequestParam String handynr) {
