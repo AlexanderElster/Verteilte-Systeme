@@ -81,8 +81,8 @@ public class User {
 		this.handynr = handynr;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public int getId() {
+		return this.id;
 	}
 	
 	@Override
