@@ -1,0 +1,6 @@
+Curl Commands
+
+curl localhost:8080/api/user/all
+curl localhost:8080/api/user/add -d titel=Dr. -d nachname=Schwille -d vorname=Juergen -d passwort=12345678 -d email=j.schwille@dhbw.de -d handynr=87654321
+curl localhost:8080/api/user/delete -d id=
+curl localhost:8080/api/user/update -d id= -d titel= -d nachname=nichtschwille -d vorname= -d passwort= -d email= -d handynr=
