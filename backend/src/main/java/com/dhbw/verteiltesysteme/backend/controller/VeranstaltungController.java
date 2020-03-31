@@ -16,25 +16,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dhbw.verteiltesysteme.backend.entities.User;
-import com.dhbw.verteiltesysteme.backend.repositories.UserRepositories;
+import com.dhbw.verteiltesysteme.backend.entities.Veranstaltung;
+import com.dhbw.verteiltesysteme.backend.repositories.VeranstaltungRepositories;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/user")
-public class UserController {
+@RequestMapping("/api/vorlesung")
+public class VeranstaltungController {
 
 	@Autowired
-	UserRepositories repository;
+	VeranstaltungRepositories repository;
 
 	@GetMapping(path = "/all")
-	public ResponseEntity<Iterable<User>> getAllUsers() {
+	public ResponseEntity<Iterable<Veranstaltung>> getAllVorlesungen() {
 		return ResponseEntity.ok(repository.findAll());
 	}
 
-	@PostMapping("/add")
-	public void addUser(@RequestBody User user) {
-		repository.save(user);
+	@PostMapping(path = "/add")
+	public void addUser(@RequestBody Veranstaltung veranstaltung) {
+		repository.save(veranstaltung);
 	}
 
 	@DeleteMapping(path = "/delete/{id}")
@@ -43,37 +43,19 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/update", method = { RequestMethod.PATCH, RequestMethod.POST })
-	public @ResponseBody boolean update(@RequestParam int id, @RequestParam String titel, @RequestParam String nachname,
-			@RequestParam String vorname, @RequestParam String passwort, @RequestParam String email,
-			@RequestParam String handynr) {
+	public @ResponseBody boolean update(@RequestParam int id, @RequestParam int dozentennr,
+			@RequestParam int anztermine) {
 		boolean updated = true;
-		Optional<User> result = repository.findById(id);
+		Optional<Veranstaltung> result = repository.findById(id);
 
 		if (result.isEmpty()) {
 			updated = false;
 		} else {
-			User u = result.get();
-
-			if (!titel.equals("")) {
-				u.setTitel(titel);
+			Veranstaltung v = result.get();
+			if (!(anztermine == 0)) {
+				v.setAnztermine(anztermine);
 			}
-			if (!nachname.equals("")) {
-				u.setNachname(nachname);
-			}
-			if (!vorname.equals("")) {
-				u.setVorname(vorname);
-			}
-			if (!passwort.equals("")) {
-				u.setPasswort(passwort);
-			}
-			if (!email.equals("")) {
-				u.setEmail(email);
-			}
-			if (!handynr.equals("")) {
-				u.setHandynr(handynr);
-			}
-
-			repository.save(u);
+			repository.save(v);
 		}
 
 		return updated;
