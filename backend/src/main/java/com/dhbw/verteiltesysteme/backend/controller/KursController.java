@@ -16,25 +16,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dhbw.verteiltesysteme.backend.entities.User;
-import com.dhbw.verteiltesysteme.backend.repositories.UserRepositories;
+import com.dhbw.verteiltesysteme.backend.entities.Kurs;
+import com.dhbw.verteiltesysteme.backend.repositories.KursRepositories;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/user")
-public class UserController {
+@RequestMapping("/api/kurs")
+public class KursController {
 
 	@Autowired
-	UserRepositories repository;
+	KursRepositories repository;
 
 	@GetMapping(path = "/all")
-	public ResponseEntity<Iterable<User>> getAllUsers() {
+	public ResponseEntity<Iterable<Kurs>> getAllKurse() {
 		return ResponseEntity.ok(repository.findAll());
 	}
 
-	@PostMapping("/add")
-	public void addUser(@RequestBody User user) {
-		repository.save(user);
+	@PostMapping(path = "/add")
+	public void addKurs(@RequestBody Kurs kurs) {
+		repository.save(kurs);
 	}
 
 	@DeleteMapping(path = "/delete/{id}")
@@ -42,40 +42,21 @@ public class UserController {
 		repository.deleteById(id);
 	}
 
-	@RequestMapping(path = "/update", method = { RequestMethod.PATCH, RequestMethod.POST })
-	public @ResponseBody boolean update(@RequestParam int id, @RequestParam String titel, @RequestParam String nachname,
-			@RequestParam String vorname, @RequestParam String passwort, @RequestParam String email,
-			@RequestParam String handynr) {
+	@RequestMapping(path="/update", method= {RequestMethod.PATCH, RequestMethod.POST})
+	public @ResponseBody boolean update(@RequestParam int id, @RequestParam String kursbezeichnung, @RequestParam String studleiter) {
 		boolean updated = true;
-		Optional<User> result = repository.findById(id);
-
+		Optional<Kurs> result = repository.findById(id);
+		
 		if (result.isEmpty()) {
 			updated = false;
-		} else {
-			User u = result.get();
-
-			if (!titel.equals("")) {
-				u.setTitel(titel);
-			}
-			if (!nachname.equals("")) {
-				u.setNachname(nachname);
-			}
-			if (!vorname.equals("")) {
-				u.setVorname(vorname);
-			}
-			if (!passwort.equals("")) {
-				u.setPasswort(passwort);
-			}
-			if (!email.equals("")) {
-				u.setEmail(email);
-			}
-			if (!handynr.equals("")) {
-				u.setHandynr(handynr);
-			}
-
-			repository.save(u);
 		}
-
+		else {
+			Kurs k = result.get();
+			
+			if (!kursbezeichnung.equals("")) {
+				k.setKursbezeichnung(kursbezeichnung);
+			}
+		}
 		return updated;
 	}
 }
