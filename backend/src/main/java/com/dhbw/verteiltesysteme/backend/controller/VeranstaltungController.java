@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dhbw.verteiltesysteme.backend.entities.User;
 import com.dhbw.verteiltesysteme.backend.entities.Veranstaltung;
 import com.dhbw.verteiltesysteme.backend.repositories.VeranstaltungRepositories;
 
@@ -43,8 +44,7 @@ public class VeranstaltungController {
 	}
 
 	@RequestMapping(path = "/update", method = { RequestMethod.PATCH, RequestMethod.POST })
-	public @ResponseBody boolean update(@RequestParam int id, @RequestParam int dozentennr,
-			@RequestParam int anztermine) {
+	public @ResponseBody boolean update(@RequestParam int id, @RequestParam User dozent, @RequestParam int anztermine) {
 		boolean updated = true;
 		Optional<Veranstaltung> result = repository.findById(id);
 
@@ -52,6 +52,11 @@ public class VeranstaltungController {
 			updated = false;
 		} else {
 			Veranstaltung v = result.get();
+
+			if (dozent != null) {
+				v.setDozent(dozent);
+			}
+
 			if (!(anztermine == 0)) {
 				v.setAnztermine(anztermine);
 			}

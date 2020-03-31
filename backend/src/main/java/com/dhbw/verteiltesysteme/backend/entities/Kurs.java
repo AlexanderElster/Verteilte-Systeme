@@ -49,4 +49,12 @@ public class Kurs {
 	public int getId() {
 		return id;
 	}
+	
+	public User getStudleiter() {
+		return studleiter;
+	}
+	
+	public void setStudleiter(User studleiter) {
+		this.studleiter = studleiter;
+	}
 }

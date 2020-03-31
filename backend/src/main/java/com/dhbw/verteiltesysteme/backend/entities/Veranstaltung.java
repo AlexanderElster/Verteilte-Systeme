@@ -42,10 +42,6 @@ public class Veranstaltung {
 		this.vorlesungstermine.forEach(x -> x.setVeranstaltung(this));
 	}
 
-	public int getDozentennr() {
-		return dozent.getId();
-	}
-
 	public int getAnztermine() {
 		return anztermine;
 	}
@@ -62,7 +58,15 @@ public class Veranstaltung {
 		this.dozent = dozent;
 	}
 	
+	public User getDozent() {
+		return dozent;
+	}
+	
 	public void setKurs(Kurs kurs) {
 		this.kurs = kurs;
+	}
+	
+	public Kurs getKurs() {
+		return kurs;
 	}
 }

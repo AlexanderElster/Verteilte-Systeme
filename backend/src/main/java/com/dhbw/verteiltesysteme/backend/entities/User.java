@@ -107,4 +107,8 @@ public class User {
 	public void setKurs(Kurs kurs) {
 		this.kurs = kurs;
 	}
+	
+	public Kurs getKurs() {
+		return kurs;
+	}
 }

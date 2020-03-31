@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dhbw.verteiltesysteme.backend.entities.Kurs;
+import com.dhbw.verteiltesysteme.backend.entities.User;
 import com.dhbw.verteiltesysteme.backend.repositories.KursRepositories;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -43,7 +44,7 @@ public class KursController {
 	}
 
 	@RequestMapping(path="/update", method= {RequestMethod.PATCH, RequestMethod.POST})
-	public @ResponseBody boolean update(@RequestParam int id, @RequestParam String kursbezeichnung, @RequestParam String studleiter) {
+	public @ResponseBody boolean update(@RequestParam int id, @RequestParam String kursbezeichnung, @RequestParam User studleiter) {
 		boolean updated = true;
 		Optional<Kurs> result = repository.findById(id);
 		
@@ -52,10 +53,13 @@ public class KursController {
 		}
 		else {
 			Kurs k = result.get();
-			
+			if (studleiter != null) {
+				k.setStudleiter(studleiter);
+			}
 			if (!kursbezeichnung.equals("")) {
 				k.setKursbezeichnung(kursbezeichnung);
 			}
+			repository.save(k);
 		}
 		return updated;
 	}

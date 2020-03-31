@@ -32,7 +32,7 @@ public class UserController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 
-	@PostMapping("/add")
+	@PostMapping(path = "/add")
 	public void addUser(@RequestBody User user) {
 		repository.save(user);
 	}

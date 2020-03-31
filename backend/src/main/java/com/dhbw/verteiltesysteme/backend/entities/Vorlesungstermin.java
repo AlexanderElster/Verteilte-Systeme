@@ -52,11 +52,19 @@ public class Vorlesungstermin {
 		this.datum = new GregorianCalendar(tag, monat - 1, jahr);
 	}
 	
+	public void setDatum(GregorianCalendar datum) {
+		this.datum = datum;
+	}
+	
 	public int getId() {
 		return id;
 	}
 	
 	public void setVeranstaltung(Veranstaltung veranstaltung) {
 		this.veranstaltung = veranstaltung;
+	}
+	
+	public Veranstaltung getVeranstaltung() {
+		return veranstaltung;
 	}
 }
