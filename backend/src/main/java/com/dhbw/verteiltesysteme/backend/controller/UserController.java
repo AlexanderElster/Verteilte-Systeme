@@ -31,7 +31,13 @@ public class UserController {
 	public ResponseEntity<Iterable<User>> getAllUsers() {
 		return ResponseEntity.ok(repository.findAll());
 	}
-
+	
+	@GetMapping(path= "/{id}")
+	public ResponseEntity<Optional<User>> getUser(@PathVariable int id)
+	{
+		return ResponseEntity.ok(repository.findById(id));
+	}
+	
 	@PostMapping(path = "/add")
 	public void addUser(@RequestBody User user) {
 		repository.save(user);
