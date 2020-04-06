@@ -39,6 +39,15 @@ public class User {
 
 	public User() {
 	}
+	
+	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr) {
+		this.setTitel(titel);
+		this.setNachname(nachname);
+		this.setVorname(vorname);
+		this.setPasswort(passwort);
+		this.setEmail(email);
+		this.setHandynr(handynr);
+	}
 
 	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr, Veranstaltung...veranstaltungen) {
 

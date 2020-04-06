@@ -65,7 +65,7 @@ public class VorlesungsterminController {
 				v.setDatum(tag, monat, jahr);
 			}
 
-			if (stdAnf != -1 && minEnd != -1) {
+			if (stdAnf != -1 && minAnf != -1) {
 				v.setAnfangszeit(stdAnf, minAnf);
 			}
 
