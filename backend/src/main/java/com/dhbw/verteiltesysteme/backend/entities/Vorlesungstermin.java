@@ -28,6 +28,16 @@ public class Vorlesungstermin {
 
 	private LocalTime endezeit;
 
+	public Vorlesungstermin() {
+		
+	}
+	
+	public Vorlesungstermin(int tag, int monat, int jahr, int stdAnf, int minAnf, int stdEnd, int minEnd) {
+		this.setDatum(tag, monat, jahr);
+		this.setAnfangszeit(stdAnf, minAnf);
+		this.setEndezeit(stdEnd, minEnd);
+	}
+	
 	public LocalTime getAnfangszeit() {
 		return anfangszeit;
 	}

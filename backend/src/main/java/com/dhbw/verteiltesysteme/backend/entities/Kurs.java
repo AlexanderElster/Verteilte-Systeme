@@ -31,6 +31,11 @@ public class Kurs {
 
 	public Kurs() {
 	}
+	
+	public Kurs(String kursbezeichnung, User studleiter) {
+		this.studleiter.setKurs(this);
+		this.setKursbezeichnung(kursbezeichnung);
+	}
 
 	public Kurs(String kursbezeichnung, User studleiter, Veranstaltung...veranstaltungen) {
 		this.studleiter.setKurs(this);
