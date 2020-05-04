@@ -14,6 +14,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { DozentenlisteComponent } from './verwaltung/dozentenliste/dozentenliste.component';
 import { NeudozentComponent } from './verwaltung/neudozent/neudozent.component';
 import { UpdatedozentComponent } from './verwaltung/updatedozent/updatedozent.component';
+import { KurslisteComponent } from './verwaltung/kursliste/kursliste.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UpdatedozentComponent } from './verwaltung/updatedozent/updatedozent.co
     LoginComponent,
     DozentenlisteComponent,
     NeudozentComponent,
-    UpdatedozentComponent
+    UpdatedozentComponent,
+    KurslisteComponent,
     
   ],
   imports: [
