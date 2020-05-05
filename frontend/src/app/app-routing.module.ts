@@ -7,7 +7,6 @@ import { KurslisteComponent } from './verwaltung/kursliste/kursliste.component';
 import { NeukursComponent } from './verwaltung/neukurs/neukurs.component';
 import { KalenderComponent } from './verwaltung/kalender/kalender.component';
 
-
 const routes: Routes = [
   {path: 'dozentenliste', component: DozentenlisteComponent},
   {path: 'dozentenliste/neu', component: NeudozentComponent},
