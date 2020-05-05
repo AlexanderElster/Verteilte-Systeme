@@ -16,6 +16,7 @@ import { NeudozentComponent } from './verwaltung/neudozent/neudozent.component';
 import { UpdatedozentComponent } from './verwaltung/updatedozent/updatedozent.component';
 import { KurslisteComponent } from './verwaltung/kursliste/kursliste.component';
 import { NeukursComponent } from './verwaltung/neukurs/neukurs.component';
+import { KalenderComponent } from './verwaltung/kalender/kalender.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NeukursComponent } from './verwaltung/neukurs/neukurs.component';
     UpdatedozentComponent,
     KurslisteComponent,
     NeukursComponent,
+    KalenderComponent,
     
   ],
   imports: [
