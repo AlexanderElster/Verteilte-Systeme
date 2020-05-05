@@ -1,0 +1,29 @@
+<span> 
+    <a class="btn btn-primary anlegen" routerLink="/veranstaltungenliste/neu"><i class="fas fa-plus"></i> Neue Veranstaltung anlegen</a>
+    </span>
+    <div class="card my-5">
+        <div class="card-body">
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Bezeichnung</th>
+                <th scope="col">Anzahl der Termine</th>
+                <th scope="col">Kurs</th>
+                <th scope="col">Dozent</th>
+                <th scope="col">Bearbeiten</th>
+                <th scope="col">Löschen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let veranstaltung of veranstaltungen">
+                <td>{{ veranstaltung.bezeichnung }}</td>
+                <td>{{ veranstaltung.anztermine }}</td>
+                <td>{{ veranstaltung.kurs.kursbezeichnung}}</td>
+                <td>{{ veranstaltung.dozent.titel }} {{ veranstaltung.dozent.vorname }} {{ veranstaltung.dozent.nachname }}</td>
+                <td><button class="btn btn-secondary" ><i class="fas fa-user-edit"></i></button></td>
+                <td><button class="btn btn-danger" (click)="deleteVeranstaltung(veranstaltung)"><i class="fas fa-trash"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>

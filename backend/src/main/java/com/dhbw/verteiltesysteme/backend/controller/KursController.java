@@ -45,8 +45,9 @@ public class KursController {
 	}
 
 	@PostMapping(path = "/add")
-	public void addKurs(@RequestBody KursModel kursh) throws IOException {
-		String studid = kursh.getStudleiter();
+	public void addKurs(@RequestBody KursModel kursm) throws IOException {
+		String studid = kursm.getStudleiter();
+
 		URL url = new URL("http://localhost:8080/api/user/" + studid);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
@@ -61,8 +62,13 @@ public class KursController {
 		String user = content.toString();
 		Gson g = new Gson();
 		User u = g.fromJson(user, User.class);
-		Kurs k = new Kurs(kursh.getKursbezeichnung(), u);
+		Kurs k = new Kurs(kursm.getKursbezeichnung(), u);
 		repository.save(k);
+	}
+
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<Optional<Kurs>> getKurs(@PathVariable int id) {
+		return ResponseEntity.ok(repository.findById(id));
 	}
 
 	@DeleteMapping(path = "/delete/{id}")

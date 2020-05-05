@@ -24,7 +24,7 @@ public class Kurs {
 
 	private String kursbezeichnung;
 
-	@OneToMany(mappedBy = "kurs", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "kurs", cascade = CascadeType.MERGE)
 	private Set<Veranstaltung> veranstaltungen;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

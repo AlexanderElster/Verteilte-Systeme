@@ -38,7 +38,7 @@ public class User {
 	@OneToMany(mappedBy = "studleiter")
 	private Set<Kurs> kurse;
 	
-	@OneToMany(mappedBy = "dozent", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "dozent")
 	private Set<Veranstaltung> veranstaltungen;
 
 	public User() {
@@ -62,6 +62,18 @@ public class User {
 		this.setEmail(email);
 		this.setHandynr(handynr);
 		this.veranstaltungen.forEach(x -> x.setDozent(this));
+
+	}
+	
+	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr, Kurs...kurse) {
+
+		this.setTitel(titel);
+		this.setNachname(nachname);
+		this.setVorname(vorname);
+		this.setPasswort(passwort);
+		this.setEmail(email);
+		this.setHandynr(handynr);
+		this.kurse.forEach(x -> x.setStudleiter(this));
 
 	}
 

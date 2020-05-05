@@ -9,8 +9,6 @@ import { User } from '../model/user';
 })
 export class KursServiceService {
 
-  private kurseUrl: string;
-
   constructor(private http: HttpClient) {
   }
 

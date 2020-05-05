@@ -6,6 +6,8 @@ import { LoginComponent } from './einstieg/login/login.component';
 import { KurslisteComponent } from './verwaltung/kursliste/kursliste.component';
 import { NeukursComponent } from './verwaltung/neukurs/neukurs.component';
 import { KalenderComponent } from './verwaltung/kalender/kalender.component';
+import { VeranstaltungenlisteComponent } from './verwaltung/veranstaltungenliste/veranstaltungenliste.component';
+import { NeuveranstaltungComponent } from './verwaltung/neuveranstaltung/neuveranstaltung.component';
 
 const routes: Routes = [
   {path: 'dozentenliste', component: DozentenlisteComponent},
@@ -13,7 +15,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'kursliste', component: KurslisteComponent},
   {path: 'kursliste/neu', component: NeukursComponent},
-  {path: 'kalender', component: KalenderComponent}
+  {path: 'kalender', component: KalenderComponent},
+  {path: 'veranstaltungenliste', component: VeranstaltungenlisteComponent},
+  {path: 'veranstaltungenliste/neu', component: NeuveranstaltungComponent}
 ];
 
 @NgModule({
