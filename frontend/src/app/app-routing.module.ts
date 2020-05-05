@@ -4,13 +4,15 @@ import { DozentenlisteComponent } from './verwaltung/dozentenliste/dozentenliste
 import { NeudozentComponent } from './verwaltung/neudozent/neudozent.component';
 import { LoginComponent } from './einstieg/login/login.component';
 import { KurslisteComponent } from './verwaltung/kursliste/kursliste.component';
+import { NeukursComponent } from './verwaltung/neukurs/neukurs.component';
 
 
 const routes: Routes = [
   {path: 'dozentenliste', component: DozentenlisteComponent},
   {path: 'dozentenliste/neu', component: NeudozentComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'kursliste', component: KurslisteComponent}
+  {path: 'kursliste', component: KurslisteComponent},
+  {path: 'kursliste/neu', component: NeukursComponent}
 ];
 
 @NgModule({

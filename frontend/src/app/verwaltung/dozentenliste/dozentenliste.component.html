@@ -23,7 +23,7 @@
             <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
             <td>{{ user.handynr }}</td>
             <td><button class="btn btn-secondary" (click)="openUpdateDozent(user)"><i class="fas fa-user-edit"></i></button></td>
-            <td><button class="btn btn-danger" (click)="deleteUser(user)"><i class="fas fa-trash"></i></button></td>
+            <td><button class="btn btn-danger" (click)="deleteUser(user);"><i class="fas fa-trash"></i></button></td>
           </tr>
         </tbody>
       </table>

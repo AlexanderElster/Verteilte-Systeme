@@ -15,7 +15,7 @@
             <tbody>
               <tr *ngFor="let kurs of kurse">
                 <td>{{ kurs.kursbezeichnung }}</td>
-                <td>{{ kurs.studleiter }}</td>
+                <!--<td>{{ kurs.studleiter }}</td>-->
                 <td><button class="btn btn-secondary" ><i class="fas fa-user-edit"></i></button></td>
                 <td><button class="btn btn-danger" (click)="deleteKurs(kurs)"><i class="fas fa-trash"></i></button></td>
               </tr>

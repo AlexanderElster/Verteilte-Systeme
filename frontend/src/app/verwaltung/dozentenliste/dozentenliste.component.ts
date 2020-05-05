@@ -24,7 +24,11 @@ export class DozentenlisteComponent implements OnInit {
 
   deleteUser(user: User){
     this.userService.delete(user.id);
-    window.location.reload();
+    //window.location.reload();
+  }
+
+  gotoDozentenListe() {
+    this.router.navigate(['/dozentenliste']);
   }
 
   openUpdateDozent(user: User){
