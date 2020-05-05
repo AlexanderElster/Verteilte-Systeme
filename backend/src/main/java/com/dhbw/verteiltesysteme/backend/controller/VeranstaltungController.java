@@ -73,8 +73,6 @@ public class VeranstaltungController {
 		conD.disconnect();
 		String user = contentD.toString();
 		
-		System.out.println(kurs + user);
-		
 		Gson g = new Gson();
 		Kurs k = g.fromJson(kurs, Kurs.class);
 		User u = g.fromJson(user, User.class);
