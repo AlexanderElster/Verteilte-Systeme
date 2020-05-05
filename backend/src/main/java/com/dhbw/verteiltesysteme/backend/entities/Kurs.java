@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -26,7 +27,7 @@ public class Kurs {
 	@OneToMany(mappedBy = "kurs", cascade = CascadeType.ALL)
 	private Set<Veranstaltung> veranstaltungen;
 
-	@OneToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "studleiter_id", referencedColumnName = "id")
 	private User studleiter;
 	

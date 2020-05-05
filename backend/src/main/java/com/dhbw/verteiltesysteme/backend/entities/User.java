@@ -35,8 +35,8 @@ public class User {
 
 	private String handynr;
 	
-	@OneToOne(mappedBy = "studleiter")
-	private Kurs kurs;
+	@OneToMany(mappedBy = "studleiter")
+	private Set<Kurs> kurse;
 	
 	@OneToMany(mappedBy = "dozent", cascade = CascadeType.MERGE)
 	private Set<Veranstaltung> veranstaltungen;
