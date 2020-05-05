@@ -22,5 +22,6 @@ export class KurslisteComponent implements OnInit {
 
   deleteKurs(kurs: Kurs){
     this.kursService.delete(kurs.id);
-    window.location.reload();}
+}
+
 }

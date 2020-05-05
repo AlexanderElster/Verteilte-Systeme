@@ -1,5 +1,6 @@
 package com.dhbw.verteiltesysteme.backend.entities;
 
+import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,27 +22,35 @@ public class Kurs {
 	int id;
 
 	private String kursbezeichnung;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(unique = true, name = "dozentId")
-	private User studleiter;
-	
+
 	@OneToMany(mappedBy = "kurs", cascade = CascadeType.ALL)
 	private Set<Veranstaltung> veranstaltungen;
 
+	@OneToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "studleiter_id", referencedColumnName = "id")
+	private User studleiter;
+	
 	public Kurs() {
 	}
 	
-	public Kurs(String kursbezeichnung, User studleiter) {
-		this.studleiter.setKurs(this);
+	public Kurs(String kursbezeichnung, Object studleiter) { 
 		this.setKursbezeichnung(kursbezeichnung);
-	}
+		this.setStudleiter((User) studleiter);  
+		}
 
-	public Kurs(String kursbezeichnung, User studleiter, Veranstaltung...veranstaltungen) {
-		this.studleiter.setKurs(this);
+	public Kurs(String kursbezeichnung, Object studleiter,Veranstaltung...veranstaltungen) { 
 		this.setKursbezeichnung(kursbezeichnung);
-		this.veranstaltungen.forEach(x -> x.setKurs(this));
+		this.setStudleiter((User) studleiter); 
+		this.veranstaltungen.forEach(x ->
+		x.setKurs(this)); 
+		}
+	
+	@Override
+	public String toString() {
+		return String.format(
+		"Customer[id=%d, kursbezeichnung='%s', studleiter='%s']", id, kursbezeichnung, studleiter);
 	}
+	 
 
 	public void setKursbezeichnung(String kursbezeichnung) {
 		this.kursbezeichnung = kursbezeichnung;
@@ -54,12 +63,17 @@ public class Kurs {
 	public int getId() {
 		return id;
 	}
-	
+
 	public User getStudleiter() {
 		return studleiter;
 	}
-	
-	public void setStudleiter(User studleiter) {
-		this.studleiter = studleiter;
+
+	public void setStudleiter(User user) {
+		this.studleiter = user;
 	}
+	
+	public int getStudleiterId() {
+		return studleiter.getId();
+	}
+	
 }
