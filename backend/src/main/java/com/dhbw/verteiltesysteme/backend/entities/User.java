@@ -44,17 +44,16 @@ public class User {
 	public User() {
 	}
 	
-	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr, Kurs kurs) {
+	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr) {
 		this.setTitel(titel);
 		this.setNachname(nachname);
 		this.setVorname(vorname);
 		this.setPasswort(passwort);
 		this.setEmail(email);
 		this.setHandynr(handynr);
-		this.setKurs(kurs);
 	}
 	
-	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr, Kurs kurs, Veranstaltung...veranstaltungen) {
+	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr, Veranstaltung...veranstaltungen) {
 
 		this.setTitel(titel);
 		this.setNachname(nachname);
@@ -62,7 +61,6 @@ public class User {
 		this.setPasswort(passwort);
 		this.setEmail(email);
 		this.setHandynr(handynr);
-		this.setKurs(kurs);
 		this.veranstaltungen.forEach(x -> x.setDozent(this));
 
 	}
@@ -117,13 +115,5 @@ public class User {
 
 	public void setTitel(String titel) {
 		this.titel = titel;
-	}
-	
-	public void setKurs(Kurs kurs) {
-		this.kurs = kurs;
-	}
-	
-	public Kurs getKurs() {
-		return kurs;
 	}
 }

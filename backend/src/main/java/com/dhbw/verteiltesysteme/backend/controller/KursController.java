@@ -57,6 +57,7 @@ public class KursController {
 			content.append(inputLine);
 		}
 		in.close();
+		con.disconnect();
 		String user = content.toString();
 		Gson g = new Gson();
 		User u = g.fromJson(user, User.class);
