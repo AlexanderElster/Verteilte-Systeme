@@ -30,7 +30,7 @@ public class Kurs {
 	@OneToMany(mappedBy = "kurs", cascade = CascadeType.MERGE)
 	private Set<Veranstaltung> veranstaltungen;
 	
-	@JsonBackReference
+	@JsonBackReference(value ="studleiter")
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "studleiter_id", referencedColumnName = "id")
 	private User studleiter;

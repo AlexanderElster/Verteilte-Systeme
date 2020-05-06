@@ -25,11 +25,11 @@ public class Veranstaltung {
 	
 	private String bezeichnung;
 	
-	@JsonBackReference
+	@JsonBackReference(value= "kurs")
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "kurs_Id", referencedColumnName = "id")
 	private Kurs kurs;
-	@JsonBackReference
+	@JsonBackReference(value = "dozent")
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "dozent_Id", referencedColumnName = "id")
 	private User dozent;
