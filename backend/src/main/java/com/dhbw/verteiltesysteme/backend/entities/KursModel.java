@@ -3,12 +3,12 @@ package com.dhbw.verteiltesysteme.backend.entities;
 public class KursModel {
 	private int id;
 	private String kursbezeichnung;
-	private String studleiter;
+	private String studleiterId;
 	
-	public KursModel(int id, String Kursbezeichnung, String studleiter) {
+	public KursModel(int id, String Kursbezeichnung, String studleiterId) {
 		this.setId(id);
 		this.setKursbezeichnung(Kursbezeichnung);
-		this.setStudleiter(studleiter);
+		this.setStudleiterId(studleiterId);
 	}
 	
 	public int getId() {
@@ -23,10 +23,10 @@ public class KursModel {
 	public void setKursbezeichnung(String kursbezeichnung) {
 		this.kursbezeichnung = kursbezeichnung;
 	}
-	public String getStudleiter() {
-		return studleiter;
+	public String getStudleiterId() {
+		return studleiterId;
 	}
-	public void setStudleiter(String studleiter) {
-		this.studleiter = studleiter;
+	public void setStudleiterId(String studleiterId) {
+		this.studleiterId = studleiterId;
 	}
 }

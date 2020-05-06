@@ -46,7 +46,7 @@ public class KursController {
 
 	@PostMapping(path = "/add")
 	public void addKurs(@RequestBody KursModel kursm) throws IOException {
-		String studid = kursm.getStudleiter();
+		String studid = kursm.getStudleiterId();
 
 		URL url = new URL("http://localhost:8080/api/user/" + studid);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();

@@ -16,7 +16,7 @@ export class NeudozentComponent  {
     private route: ActivatedRoute, 
     private router: Router, 
     private userService: UserServiceService) {
-      this.user = new User(null, null, null, null, null, null, null);
+      this.user = new User(null, null, null, null, null, null, null, null, null);
   }
   onSubmit() {
     this.userService.save(this.user).subscribe(result => this.gotoDozenteliste());

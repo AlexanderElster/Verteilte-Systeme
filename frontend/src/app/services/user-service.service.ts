@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { User } from '../model/user';
 import { Observable } from 'rxjs';
@@ -16,6 +16,10 @@ export class UserServiceService {
 
   public findAll(): Observable<User[]> {
     return this.http.get<User[]>('http://localhost:8080/api/user/all');
+  }
+
+  public findById(id: number)  {
+    return this.http.get<User>(`http://localhost:8080/api/user/${id}`);
   }
   
   public save(user: User) {

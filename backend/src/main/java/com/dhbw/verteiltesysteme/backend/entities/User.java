@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -35,9 +37,11 @@ public class User {
 
 	private String handynr;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "studleiter")
 	private Set<Kurs> kurse;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "dozent")
 	private Set<Veranstaltung> veranstaltungen;
 
@@ -53,7 +57,7 @@ public class User {
 		this.setHandynr(handynr);
 	}
 	
-	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr, Veranstaltung...veranstaltungen) {
+	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr, Set<Veranstaltung> veranstaltungen, Set<Kurs> kurse) {
 
 		this.setTitel(titel);
 		this.setNachname(nachname);
@@ -61,20 +65,10 @@ public class User {
 		this.setPasswort(passwort);
 		this.setEmail(email);
 		this.setHandynr(handynr);
+		this.setVeranstaltungen(veranstaltungen);
+		this.setKurse(kurse);
 		this.veranstaltungen.forEach(x -> x.setDozent(this));
-
-	}
-	
-	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr, Kurs...kurse) {
-
-		this.setTitel(titel);
-		this.setNachname(nachname);
-		this.setVorname(vorname);
-		this.setPasswort(passwort);
-		this.setEmail(email);
-		this.setHandynr(handynr);
 		this.kurse.forEach(x -> x.setStudleiter(this));
-
 	}
 
 	public String getNachname() {
@@ -128,4 +122,21 @@ public class User {
 	public void setTitel(String titel) {
 		this.titel = titel;
 	}
+	
+	public void setVeranstaltungen(Set<Veranstaltung> veranstaltungen) {
+		this.veranstaltungen = veranstaltungen;
+	}
+	
+	public Set<Veranstaltung> getVeranstaltungen() {
+		return veranstaltungen;
+	}
+	
+	public void setKurse(Set<Kurs> kurse) {
+		this.kurse = kurse;
+	}
+	
+	public Set<Kurs> getKurse() {
+		return kurse;
+	}
+	
 }
