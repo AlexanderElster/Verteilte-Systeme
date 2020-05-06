@@ -1,6 +1,5 @@
 package com.dhbw.verteiltesysteme.backend.entities;
 
-import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,11 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "kurs")
@@ -30,7 +27,7 @@ public class Kurs {
 	@OneToMany(mappedBy = "kurs", cascade = CascadeType.MERGE)
 	private Set<Veranstaltung> veranstaltungen;
 	
-	@JsonBackReference
+	@JsonBackReference(value ="studleiter")
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "studleiter_id", referencedColumnName = "id")
 	private User studleiter;
