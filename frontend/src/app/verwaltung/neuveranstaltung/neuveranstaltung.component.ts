@@ -39,7 +39,6 @@ export class NeuveranstaltungComponent implements OnInit {
   
   onSubmit() {
     this.veranstaltungService.save(this.veranstaltung).subscribe(result => this.gotoKursliste());
-    console.log(this.veranstaltung.anztermine)
   }
 
   gotoKursliste() {

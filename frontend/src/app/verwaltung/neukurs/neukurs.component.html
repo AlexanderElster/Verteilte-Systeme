@@ -8,9 +8,9 @@
                     id="kursbezeichnung" name="kursbezeichnung" placeholder="Kursbezeichnung"  #kursbezeichnung="ngModel">
             </div>
             <div class="form-group">
-                <label for="studleiter">Studiengangsleiter</label>
-                <select type="text" [(ngModel)]="kurs.studleiter" class="form-control" 
-                id="studleiter" name="studleiter" required #studleiter="ngModel">
+                <label for="studleiterId">Studiengangsleiter</label>
+                <select type="text" [(ngModel)]="kurs.studleiterId" class="form-control" 
+                id="studleiterId" name="studleiterId" required #studleiterId="ngModel">
                     <option *ngFor="let user of users"  value="{{ user.id }}"> {{ user.titel }} {{ user.vorname }} {{ user.nachname }}</option>
                 </select>
             </div>

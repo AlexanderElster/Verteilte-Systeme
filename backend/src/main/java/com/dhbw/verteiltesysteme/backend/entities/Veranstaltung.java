@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "veranstaltung")
 public class Veranstaltung {
@@ -21,17 +24,18 @@ public class Veranstaltung {
 	private int id;
 	
 	private String bezeichnung;
-
+	
+	@JsonBackReference
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "kurs_Id", referencedColumnName = "id")
 	private Kurs kurs;
-
+	@JsonBackReference
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "dozent_Id", referencedColumnName = "id")
 	private User dozent;
 
 	private int anztermine;
-
+	
 	@OneToMany(mappedBy = "veranstaltung", cascade = CascadeType.MERGE)
 	private Set<Vorlesungstermin> vorlesungstermine;
 
@@ -46,11 +50,12 @@ public class Veranstaltung {
 		this.setDozent((User) dozent);
 	}
 
-	public Veranstaltung(String bezeichnung, int anztermine, Kurs kurs ,User dozent ,Vorlesungstermin... vorlesungstermine) {
+	public Veranstaltung(String bezeichnung, int anztermine, Kurs kurs ,User dozent ,Set<Vorlesungstermin> vorlesungstermine) {
 		this.setBezeichnung(bezeichnung);
 		this.setAnztermine(anztermine);
 		this.setKurs(kurs);
 		this.setDozent(dozent);
+		this.setVorlesungstermine(vorlesungstermine);
 		this.vorlesungstermine.forEach(x -> x.setVeranstaltung(this));
 	}
 
@@ -93,8 +98,16 @@ public class Veranstaltung {
 	public int getDozentId() {
 		return dozent.getId();
 	}
-	
+
 	public int getKursId() {
 		return kurs.getId();
+	}
+	
+	public Set<Vorlesungstermin> getVorlesungstermine() {
+		return vorlesungstermine;
+	}
+	
+	public void setVorlesungstermine(Set<Vorlesungstermin> vorlesungstermine) {
+		this.vorlesungstermine = vorlesungstermine;
 	}
 }

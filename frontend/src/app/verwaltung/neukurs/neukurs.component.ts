@@ -20,7 +20,7 @@ export class NeukursComponent implements OnInit {
     private router: Router,
     private kursService: KursServiceService,
     private userService: UserServiceService) {
-      this.kurs = new Kurs(null, null, null)
+      this.kurs = new Kurs(null, null, null, null, null)
      }
 
   ngOnInit(): void {

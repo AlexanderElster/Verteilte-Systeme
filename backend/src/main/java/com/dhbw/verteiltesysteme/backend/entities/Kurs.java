@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "kurs")
 public class Kurs {
@@ -23,10 +26,11 @@ public class Kurs {
 	int id;
 
 	private String kursbezeichnung;
-
+	
 	@OneToMany(mappedBy = "kurs", cascade = CascadeType.MERGE)
 	private Set<Veranstaltung> veranstaltungen;
-
+	
+	@JsonBackReference
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "studleiter_id", referencedColumnName = "id")
 	private User studleiter;
@@ -39,9 +43,10 @@ public class Kurs {
 		this.setStudleiter((User) studleiter);  
 		}
 
-	public Kurs(String kursbezeichnung, Object studleiter,Veranstaltung...veranstaltungen) { 
+	public Kurs(String kursbezeichnung, Object studleiter,Set<Veranstaltung> veranstaltungen) { 
 		this.setKursbezeichnung(kursbezeichnung);
 		this.setStudleiter((User) studleiter); 
+		this.setVeranstaltungen(veranstaltungen);
 		this.veranstaltungen.forEach(x ->
 		x.setKurs(this)); 
 		}
@@ -77,4 +82,11 @@ public class Kurs {
 		return studleiter.getId();
 	}
 	
+	public void setVeranstaltungen(Set<Veranstaltung> veranstaltungen) {
+		this.veranstaltungen = veranstaltungen;
+	}
+	
+	public Set<Veranstaltung> getVeranstaltungen() {
+		return veranstaltungen;
+	}
 }

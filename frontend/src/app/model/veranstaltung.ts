@@ -9,7 +9,9 @@ export class Veranstaltung {
     id: number;
     bezeichnung: string;
     anztermine: number;
+    kursId: number;
     kurs: Kurs;
+    dozentId: number;
     dozent: User;
 
 }

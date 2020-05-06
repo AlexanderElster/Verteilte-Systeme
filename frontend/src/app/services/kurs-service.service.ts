@@ -16,6 +16,10 @@ export class KursServiceService {
     return this.http.get<Kurs[]>(`http://localhost:8080/api/kurs/all`);
   }
 
+  public findById(id: number) {
+    return this.http.get<Kurs>(`http://localhost:8080/api/kurs/${id}`);
+  }
+
   public save(kurs: Kurs) {
     return this.http.post<Kurs>(`http://localhost:8080/api/kurs/add`, kurs)
   }
