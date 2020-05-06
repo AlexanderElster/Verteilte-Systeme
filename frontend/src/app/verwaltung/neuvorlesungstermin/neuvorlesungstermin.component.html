@@ -1,18 +1,41 @@
-
-<div class="card my-5">
+<h1 class="custom-heading">Vorlesungstermin planen</h1>
+<div class="card my-4">
     <div class="card-body">
         <form (ngSubmit)="onSubmit()" #vorlesungsForm="ngForm">
             <div class="form-group">
                 <label for="veranstaltung">Veranstaltung</label>
-                <select type="text" [(ngModel)]="vorlesungstermin.veranstaltung" class="form-control"
-                id="veranstaltung" name="veranstaltung" required #veranstaltung="ngModel">
-                <option *ngFor="let veranstaltung of veranstaltungen" value="{{veranstaltung.id}}">
-                    {{veranstaltung.bezeichnung}} {{veranstaltung.kurs.kursbezeichnung}}
-                </option>
+                <select type="text" [(ngModel)]="vorlesungstermin.veranstaltung" class="form-control" id="veranstaltung"
+                    name="veranstaltung" required #veranstaltung="ngModel">
+                    <option *ngFor="let veranstaltung of veranstaltungen" value="{{veranstaltung.id}}">
+                        {{veranstaltung.bezeichnung}} {{veranstaltung.kurs.kursbezeichnung}}
+                        {{veranstaltung.dozent.titel}} {{veranstaltung.dozent.vorname}}
+                        {{veranstaltung.dozent.nachname}}
+                    </option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i>  {{"GENERAL.ADD" | translate}}</button>
-            <a style="margin-left: 20px;" class="btn btn-secondary" routerLink="/kalender"><i class="fas fa-times"></i>  {{"GENERAL.CANCEL" | translate}}</a>
+            <div class="form-group">
+                <label for="datum">Datum</label> <br>
+                <input type="date" name="datum" required>
+            </div>
+            <div>
+                Uhrzeit <br>
+                <span class="form-group">
+                    <label for="anfangszeit"></label>
+                    <input type="time">
+
+                </span>
+
+                <span class="form-group" style="margin-left: 20px;">
+                    <label for="endezeit">   bis   </label>
+                    <input type="time" style="margin-left: 20px;">
+
+                </span>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i>
+                {{"GENERAL.ADD" | translate}}</button>
+            <a style="margin-left: 20px;" class="btn btn-secondary" routerLink="/kalender"><i class="fas fa-times"></i>
+                {{"GENERAL.CANCEL" | translate}}</a>
         </form>
     </div>
 </div>
