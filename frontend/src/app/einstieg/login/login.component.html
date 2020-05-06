@@ -6,20 +6,16 @@
                 <input type="text" [(ngModel)]="user.email" class="form-control" id="email" name="email" required
                     #email="ngModel">
             </div>
-            <div>
-                <div [hidden]="!email.pristine" class="alert alert-danger">
-                    {{"LOGIN.WARNING.EMAIL" | translate}}</div>
-            </div>
+            <div *ngIf="email.touched && email.invalid" class="alert alert-danger">{{"LOGIN.WARNING.EMAIL" | translate}}</div>
             <div class="form-group">
                 <label for="password">{{"LOGIN.PASSWORD" | translate}}</label>
                 <input type="text" [(ngModel)]="user.passwort" class="form-control" id="password" name="password"
                     required #password="ngModel">
             </div>
-            <div [hidden]="!password.pristine" class="alert alert-danger">
-                {{"LOGIN.WARNING.PASSWORD" | translate}}</div>
+            <div *ngIf="password.touched && password.invalid" class="alert alert-danger">{{"LOGIN.WARNING.PASSWORD" | translate}}</div>
             <button type="submit" [disabled]="!loginForm.form.valid" class="btn btn-primary">
                 {{"LOGIN.LOGIN" | translate}}</button>
-            <div style="margin-top: 15px;"><a class="btn btn-light">{{"LOGIN.FORGOTPASSWORD" | translate}}</a></div>
+            <div style="margin-top: 15px;"><button class="btn btn-light" disabled>{{"LOGIN.FORGOTPASSWORD" | translate}}</button></div>
 
         </form>
     </div>

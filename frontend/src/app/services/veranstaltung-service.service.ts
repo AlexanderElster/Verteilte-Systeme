@@ -25,7 +25,7 @@ export class VeranstaltungServiceService {
     this.http.delete(`http://localhost:8080/api/veranstaltung/delete/${id}`).subscribe();
   }
 
-  public update(veranstaltung: Kurs): void{
-    this.http.post(`http://localhost:8080/api/veranstaltung/delete/${veranstaltung.id}`, veranstaltung).subscribe();
+  public update(veranstaltung: Veranstaltung): void{
+    this.http.post(`http://localhost:8080/api/veranstaltung/update/${veranstaltung.id}`, veranstaltung).subscribe();
   }
 }

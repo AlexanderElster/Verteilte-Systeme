@@ -7,35 +7,39 @@
                 <select type="text" [(ngModel)]="vorlesungstermin.veranstaltung" class="form-control" id="veranstaltung"
                     name="veranstaltung" required #veranstaltung="ngModel">
                     <option *ngFor="let veranstaltung of veranstaltungen" value="{{veranstaltung.id}}">
-                        {{veranstaltung.bezeichnung}} {{veranstaltung.kurs.kursbezeichnung}}
+                        {{veranstaltung.bezeichnung}}<!--{{veranstaltung.kurs.kursbezeichnung}}
                         {{veranstaltung.dozent.titel}} {{veranstaltung.dozent.vorname}}
-                        {{veranstaltung.dozent.nachname}}
+                        {{veranstaltung.dozent.nachname}}--> 
+                        
                     </option>
                 </select>
             </div>
+            <div *ngIf="veranstaltung.touched && veranstaltung.invalid" class="alert alert-danger">Bitte wählen Sie eine Veranstaltung aus.</div>
             <div class="form-group">
                 <label for="datum">Datum</label> <br>
-                <input type="date" name="datum" required>
+                <input type="date" [(ngModel)]="vorlesungstermin.datum" id="datum" name="datum" required #datum="ngModel">
             </div>
             <div>
                 Uhrzeit <br>
                 <span class="form-group">
                     <label for="anfangszeit"></label>
-                    <input type="time">
+                    <input  type="time" [(ngModel)]="vorlesungstermin.anfangszeit" id="anfangszeit" name="anfangszeit" required #anfangszeit="ngModel">
 
                 </span>
-
+                
                 <span class="form-group" style="margin-left: 20px;">
                     <label for="endezeit">   bis   </label>
-                    <input type="time" style="margin-left: 20px;">
+                    <input type="time" style="margin-left: 20px;" [(ngModel)]="vorlesungstermin.endezeit" id="endezeit" name="endezeit" required #endezeit="ngModel">
 
                 </span>
             </div>
+            <div *ngIf="anfangszeit.touched && anfangszeit.invalid || endezeit.touched && endezeit.invalid" class="alert alert-danger">Bitte geben Sie die Zeit an.</div>
             <br>
-            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i>
+            <button type="submit" class="btn btn-primary" [disabled]="vorlesungsForm.form.invalid"><i class="fas fa-check"></i>
                 {{"GENERAL.ADD" | translate}}</button>
             <a style="margin-left: 20px;" class="btn btn-secondary" routerLink="/kalender"><i class="fas fa-times"></i>
                 {{"GENERAL.CANCEL" | translate}}</a>
         </form>
     </div>
 </div>
+<button (click)="ausgabe()">TestAusgabe</button>
