@@ -1,8 +1,6 @@
 package com.dhbw.verteiltesysteme.backend.entities;
 
-import java.time.LocalTime;
-import java.util.GregorianCalendar;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,59 +9,36 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "vorlesungstermin")
 public class Vorlesungstermin {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@ManyToOne
-	@JoinColumn(name = "veranstatungsId")
+	private String datum;
+
+	private String anfangszeit;
+
+	private String endezeit;
+	
+	@JsonBackReference(value = "veranstaltung")
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "veranstatungs_Id", referencedColumnName ="id")
 	private Veranstaltung veranstaltung;
-
-	private GregorianCalendar datum;
-
-	private LocalTime anfangszeit;
-
-	private LocalTime endezeit;
 
 	public Vorlesungstermin() {
 		
 	}
 	
-	public Vorlesungstermin(int tag, int monat, int jahr, int stdAnf, int minAnf, int stdEnd, int minEnd) {
-		this.setDatum(tag, monat, jahr);
-		this.setAnfangszeit(stdAnf, minAnf);
-		this.setEndezeit(stdEnd, minEnd);
-	}
-	
-	public LocalTime getAnfangszeit() {
-		return anfangszeit;
-	}
-
-	public void setAnfangszeit(int hour, int minute) {
-		this.anfangszeit = LocalTime.of(hour, minute);
-	}
-
-	public LocalTime getEndezeit() {
-		return endezeit;
-	}
-
-	public void setEndezeit(int hour, int minute) {
-		this.endezeit = LocalTime.of(hour, minute);
-	}
-
-	public GregorianCalendar getDatum() {
-		return datum;
-	}
-
-	public void setDatum(int tag, int monat, int jahr) {
-		this.datum = new GregorianCalendar(tag, monat - 1, jahr);
-	}
-	
-	public void setDatum(GregorianCalendar datum) {
-		this.datum = datum;
+	public Vorlesungstermin(String datum, String anfangszeit, String endezeit, Veranstaltung veranstaltung) {
+		this.setDatum(datum);
+		this.setAnfangszeit(anfangszeit);
+		this.setEndezeit(endezeit);
+		this.setVeranstaltung(veranstaltung);
 	}
 	
 	public int getId() {
@@ -76,5 +51,33 @@ public class Vorlesungstermin {
 	
 	public Veranstaltung getVeranstaltung() {
 		return veranstaltung;
+	}
+
+	public String getDatum() {
+		return datum;
+	}
+
+	public void setDatum(String datum) {
+		this.datum = datum;
+	}
+
+	public String getAnfangszeit() {
+		return anfangszeit;
+	}
+
+	public void setAnfangszeit(String anfangszeit) {
+		this.anfangszeit = anfangszeit;
+	}
+
+	public String getEndezeit() {
+		return endezeit;
+	}
+
+	public void setEndezeit(String endezeit) {
+		this.endezeit = endezeit;
+	}
+	
+	public int getVeranstaltungsId() {
+		return this.veranstaltung.getId();
 	}
 }
