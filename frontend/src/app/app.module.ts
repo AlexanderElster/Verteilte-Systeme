@@ -20,6 +20,7 @@ import { KalenderComponent } from './verwaltung/kalender/kalender.component';
 import { NavbarComponent } from './general/navbar/navbar.component';
 import { VeranstaltungenlisteComponent } from './verwaltung/veranstaltungenliste/veranstaltungenliste.component';
 import { NeuveranstaltungComponent } from './verwaltung/neuveranstaltung/neuveranstaltung.component';
+import { NeuvorlesungsterminComponent } from './verwaltung/neuvorlesungstermin/neuvorlesungstermin.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NeuveranstaltungComponent } from './verwaltung/neuveranstaltung/neuvera
     KalenderComponent,
     NavbarComponent,
     VeranstaltungenlisteComponent,
-    NeuveranstaltungComponent
+    NeuveranstaltungComponent,
+    NeuvorlesungsterminComponent
   ],
   imports: [
     BrowserModule,
