@@ -1,9 +1,9 @@
 <div class="card my-5">
     <div class="card-body">
-        <div class="month"><h2>{{ currentMonth }}</h2></div>
-        <span> <button (click)="prev()" class="btn btn-primary" href="" style="margin-bottom: 10px;"><i class="fas fa-chevron-left"></i>  Zurück</button>
+        <div class="month"><h2>{{ selectedMonth }} {{this.selectedDate.getFullYear()}}</h2></div>
+        <span> <button (click)="prevMonth()" class="btn btn-primary" href="" style="margin-bottom: 10px;"><i class="fas fa-chevron-left"></i>  Zurück</button>
             
-            <button (click)="next()" class="btn btn-primary" style="float: right; margin-bottom: 10px;" href="">Vor  <i class="fas fa-chevron-right"></i></button>
+            <button (click)="nextMonth()" class="btn btn-primary" style="float: right; margin-bottom: 10px;" href="">Vor  <i class="fas fa-chevron-right"></i></button>
         </span>
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
