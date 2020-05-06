@@ -8,6 +8,8 @@ import { NeukursComponent } from './verwaltung/neukurs/neukurs.component';
 import { KalenderComponent } from './verwaltung/kalender/kalender.component';
 import { VeranstaltungenlisteComponent } from './verwaltung/veranstaltungenliste/veranstaltungenliste.component';
 import { NeuveranstaltungComponent } from './verwaltung/neuveranstaltung/neuveranstaltung.component';
+import { NeuvorlesungsterminComponent } from './verwaltung/neuvorlesungstermin/neuvorlesungstermin.component';
+
 
 const routes: Routes = [
   {path: 'dozentenliste', component: DozentenlisteComponent},
@@ -17,7 +19,8 @@ const routes: Routes = [
   {path: 'kursliste/neu', component: NeukursComponent},
   {path: 'kalender', component: KalenderComponent},
   {path: 'veranstaltungenliste', component: VeranstaltungenlisteComponent},
-  {path: 'veranstaltungenliste/neu', component: NeuveranstaltungComponent}
+  {path: 'veranstaltungenliste/neu', component: NeuveranstaltungComponent},
+  {path: 'vorlesungstermin/neu', component: NeuvorlesungsterminComponent}
 ];
 
 @NgModule({

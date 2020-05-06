@@ -1,0 +1,18 @@
+
+<div class="card my-5">
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()" #vorlesungsForm="ngForm">
+            <div class="form-group">
+                <label for="veranstaltung">Veranstaltung</label>
+                <select type="text" [(ngModel)]="vorlesungstermin.veranstaltung" class="form-control"
+                id="veranstaltung" name="veranstaltung" required #veranstaltung="ngModel">
+                <option *ngFor="let veranstaltung of veranstaltungen" value="{{veranstaltung.id}}">
+                    {{veranstaltung.bezeichnung}} {{veranstaltung.kurs.kursbezeichnung}}
+                </option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i>  {{"GENERAL.ADD" | translate}}</button>
+            <a style="margin-left: 20px;" class="btn btn-secondary" routerLink="/kalender"><i class="fas fa-times"></i>  {{"GENERAL.CANCEL" | translate}}</a>
+        </form>
+    </div>
+</div>
