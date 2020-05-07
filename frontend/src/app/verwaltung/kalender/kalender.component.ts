@@ -20,7 +20,7 @@ export class KalenderComponent implements OnInit {
 
   months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
   
-  monthCounter;
+  monthCounter
   selectedMonth;
 
   selectedDate;
@@ -41,7 +41,10 @@ export class KalenderComponent implements OnInit {
 
   ngOnInit(): void {
 
-       console.log(this.getTermin(2004));
+    this.vorlesungsterminService.findById(2004).then((result) => {
+      this.testTermin = result;
+      console.log(this.testTermin)
+    });
     /*
     this.userService.findById(2003).subscribe(data => {
       this.user = data;
@@ -71,10 +74,6 @@ export class KalenderComponent implements OnInit {
     this.selectedYear = this.selectedDate.getFullYear();
     this.getSelectedMonth();
     this.loadCalendar();
-  }
-
-  getTermin(id: number) {
-    this.vorlesungsterminService.findById(id).toPromise().then
   }
 
   getSelectedMonth() {

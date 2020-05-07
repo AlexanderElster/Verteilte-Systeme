@@ -21,14 +21,13 @@ export class AuthentifizierungService {
       return true;
     }
     else {
-      sessionStorage.setItem('uid', 'null')
       return false;
     }
   }
 
   istUserEingeloggt() {
     let uid = sessionStorage.getItem('uid')
-    if (uid === null || 'null') {
+    if (uid === null) {
       return false
     }
     else {

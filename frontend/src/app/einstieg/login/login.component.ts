@@ -36,9 +36,11 @@ export class LoginComponent implements OnInit {
   onLogin(){
     this.userService.login(this.loginUser).then( (result) => {
       this.user = result;
-      console.log(this.user);
+      console.log(this.user)
       if (this.authentifizierungService.authentifizieren(this.user))
       {
+        console.log(this.authentifizierungService.authentifizieren(this.user));
+        console.log(sessionStorage.getItem('uid'))
         if(this.user.admin == true)
           this.router.navigate(['/dozentenliste'])
         else {
