@@ -1,5 +1,8 @@
-<button (click)="ausgabe()">ausgabe</button>
-<div class="card my-5">
+<!--
+    <button (click)="ausgabe()">ausgabe</button>
+-->
+<a class="btn btn-primary anlegen" routerLink="/vorlesungstermin/neu"><i class="fas fa-plus"></i>      Neuen Termin planen</a>
+<div class="card my-3">
     <div class="card-body">
         <div class="month"><h2>{{ selectedMonth }} {{this.selectedDate.getFullYear()}}</h2></div>
         <span> <button (click)="prevMonth()" class="btn btn-primary" href="" style="margin-bottom: 10px;"><i class="fas fa-chevron-left"></i>  Zurück</button>
@@ -17,7 +20,7 @@
                     <th>Sa</th>
                     <th>So</th>
                 </tr>
-            </thead>
+            </thead> 
             <tr>
                 <td id="k1"><div id="d1"></div><div id="e1"></div></td>
                 <td id="k2"><div id="d2"></div><div id="e2"></div></td>
@@ -69,8 +72,8 @@
                 <td id="k38"><div id="d38"></div><div id="e38"></div></td>
                 <td id="k39"><div id="d39"></div><div id="e39"></div></td>
                 <td id="k40"><div id="d40"></div><div id="e40"></div></td>
-                <td id="k42"><div id="d41"></div><div id="e41"></div></td>
-                <td id="k43"><div id="d42"></div><div id="e42"></div></td>
+                <td id="k41"><div id="d41"></div><div id="e41"></div></td>
+                <td id="k42"><div id="d42"></div><div id="e42"></div></td>
             </tr>
         </table>
     </div>
