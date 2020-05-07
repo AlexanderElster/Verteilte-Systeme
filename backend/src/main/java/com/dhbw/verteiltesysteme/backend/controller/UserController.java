@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dhbw.verteiltesysteme.backend.entities.LoginUser;
 import com.dhbw.verteiltesysteme.backend.entities.User;
 import com.dhbw.verteiltesysteme.backend.repositories.UserRepositories;
 
@@ -35,6 +36,28 @@ public class UserController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Optional<User>> getUser(@PathVariable int id) {
 		return ResponseEntity.ok(repository.findById(id));
+	}
+	
+	@PostMapping(path ="/login")
+	@ResponseBody
+	public User login (@RequestBody LoginUser logUser )
+	{
+		String userEmail = logUser.getEmail();
+		String userPasswort = logUser.getPasswort();
+		Optional<User> loginUser = repository.findByEmail(userEmail);
+			User user = loginUser.get();
+			User notFound;
+			notFound = new User(null,null,null,null,null,null,null,null);
+		if(user.getEmail().equals(userEmail))
+				{
+					if(user.getPasswort().equals(userPasswort))
+					{
+						return  user;
+					}
+						
+				}
+		
+		return notFound;
 	}
 
 	@PostMapping(path = "/add")
