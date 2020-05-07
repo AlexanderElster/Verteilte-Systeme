@@ -13,6 +13,9 @@ export class VorlesungsterminService {
   public findAll(): Observable<Vorlesungstermin[]> {
     return this.http.get<Vorlesungstermin[]>('http://localhost:8080/api/vorlesungstermin/all');
   }
+  public findById(id: number){
+    return this.http.get<Vorlesungstermin>(`http://localhost:8080/api/vorlesungstermin/${id}`)
+  }
   public save(vorlesungstermin: Vorlesungstermin) {
     return this.http.post<Vorlesungstermin>('http://localhost:8080/api/vorlesungstermin/add', vorlesungstermin);
   }
