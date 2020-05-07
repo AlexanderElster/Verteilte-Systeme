@@ -19,8 +19,8 @@ export class UserServiceService {
     return this.http.get<User[]>('http://localhost:8080/api/user/all');
   }
 
-  public findById(id: number)  {
-    return this.http.get<User>(`http://localhost:8080/api/user/${id}`);
+  public async findById(id: number)  {
+    return this.http.get<User>(`http://localhost:8080/api/user/${id}`).toPromise();
   }
   
   public save(user: User) {

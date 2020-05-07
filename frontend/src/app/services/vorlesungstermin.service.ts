@@ -13,7 +13,7 @@ export class VorlesungsterminService {
   public findAll(): Observable<Vorlesungstermin[]> {
     return this.http.get<Vorlesungstermin[]>('http://localhost:8080/api/vorlesungstermin/all');
   }
-  public findById(id: number){
+  public async findById(id: number){
     return this.http.get<Vorlesungstermin>(`http://localhost:8080/api/vorlesungstermin/${id}`).toPromise();
   }
   public save(vorlesungstermin: Vorlesungstermin) {

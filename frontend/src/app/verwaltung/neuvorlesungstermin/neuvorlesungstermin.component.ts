@@ -38,8 +38,8 @@ export class NeuvorlesungsterminComponent implements OnInit {
       this.veranstaltungen = data;
 
       for(let veranstaltung of this.veranstaltungen){
-        this.userService.findById(veranstaltung.dozentId).subscribe(dozent => 
-          veranstaltung.dozent = dozent)
+        this.userService.findById(veranstaltung.dozentId).then(dozent => {
+          veranstaltung.dozent = dozent});
         
         this.kursService.findById(veranstaltung.kursId).subscribe(kurs =>
           veranstaltung.kurs = kurs)
@@ -49,26 +49,14 @@ export class NeuvorlesungsterminComponent implements OnInit {
     if(!this.loginService.istUserEingeloggt()) {
       this.router.navigate(['/login'])
     }
-
-    /*
-    console.log(this.veranstaltungen);
-    console.log(this.kurse);
-    console.log(this.users);
-  */
   }
 
 
   onSubmit(){
-    console.log(this.vorlesungstermin);
     this.vorlesungsterminsterminService.save(this.vorlesungstermin).subscribe(result => this.gotoKalender());
   }
 
   gotoKalender(){
     this.router.navigate(['/kalender']);
-  }
-  ausgabe(){
-    console.log(this.veranstaltungen);
-    console.log(this.kurse);
-    console.log(this.users);
   }
 }

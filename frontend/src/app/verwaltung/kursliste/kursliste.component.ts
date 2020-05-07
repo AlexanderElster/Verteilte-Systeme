@@ -22,8 +22,7 @@ export class KurslisteComponent implements OnInit {
     this.kursService.findAll().subscribe(data => {
       this.kurse = data;
       for (let kurs of this.kurse) {
-        this.userService.findById(kurs.studleiterId).subscribe(user => kurs.studleiter = user
-          )
+        this.userService.findById(kurs.studleiterId).then((user) => {kurs.studleiter = user});
         }
     });
 

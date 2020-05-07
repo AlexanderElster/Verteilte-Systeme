@@ -20,7 +20,6 @@ export class DozentenlisteComponent implements OnInit {
   ngOnInit() {
     this.userService.findAll().subscribe(data => {
       this.users = data;
-      console.log(this.users);
       
       if(!this.loginService.istUserEingeloggt()) {
         this.router.navigate(['/login'])

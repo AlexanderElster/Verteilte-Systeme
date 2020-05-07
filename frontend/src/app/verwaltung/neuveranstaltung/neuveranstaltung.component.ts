@@ -37,7 +37,6 @@ export class NeuveranstaltungComponent implements OnInit {
     this.userService.findAll().subscribe(data => {
       this.users = data;
     });
-    console.log(this.kurse);
 
     if(!this.loginService.istUserEingeloggt()) {
       this.router.navigate(['/login'])

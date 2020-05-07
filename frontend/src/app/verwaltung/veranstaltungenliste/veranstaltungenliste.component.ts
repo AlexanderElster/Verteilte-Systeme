@@ -22,8 +22,8 @@ export class VeranstaltungenlisteComponent implements OnInit {
       this.veranstaltungen = data;
 
       for (let veranstaltung of this.veranstaltungen) {
-        this.userService.findById(veranstaltung.dozentId).subscribe(dozent => 
-          veranstaltung.dozent = dozent)
+        this.userService.findById(veranstaltung.dozentId).then(dozent => 
+          {veranstaltung.dozent = dozent});
         
         this.kursService.findById(veranstaltung.kursId).subscribe(kurs =>
           veranstaltung.kurs = kurs)

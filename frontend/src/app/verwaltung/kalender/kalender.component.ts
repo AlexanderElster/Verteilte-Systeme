@@ -28,42 +28,25 @@ export class KalenderComponent implements OnInit {
 
 
   user: User;
-  vorlTermine: Vorlesungstermin[];
   testTermin: Vorlesungstermin;
+  vorlTermine: Array<Vorlesungstermin> = [];
 
   constructor(private vorlesungsterminService: VorlesungsterminService,private veranstaltungService: VeranstaltungServiceService,
-     private userService: UserServiceService, private kursService: KursServiceService, private loginService: AuthentifizierungService, private router: Router) {   
+     private userService: UserServiceService, private kursService: KursServiceService, private loginService: AuthentifizierungService, private router: Router) { 
      }
 
-     ausgabe(){
-      console.log(this.vorlTermine);
-     }
 
   ngOnInit(): void {
 
-    this.vorlesungsterminService.findById(2004).then((result) => {
-      this.testTermin = result;
-      console.log(this.testTermin)
-    });
-    /*
-    this.userService.findById(2003).subscribe(data => {
-      this.user = data;
-      
-      let i = 0;
-      for(let veranstaltung of this.user.veranstaltungen){
-        
-        for(let vorlesungstermin of veranstaltung.vorlesungstermine){
+    this.userService.findById(2001).then( (result) => {
+      this.user = result;
 
-          console.log(vorlesungstermin);
-          this.vorlTermine.push(vorlesungstermin);
-          i++;
+      for(let veranstaltung of this.user.veranstaltungen) {
+        for(let vorlesungstermin of veranstaltung.vorlesungstermine){
+          this.vorlTermine.push(vorlesungstermin)
         }
       }
-      
-      //console.log(this.vorlTermine);
     });
-
-    */
 
     if(!this.loginService.istUserEingeloggt()) {
       this.router.navigate(['/login'])
@@ -120,7 +103,6 @@ export class KalenderComponent implements OnInit {
       entry = document.getElementById('k' + i);
       dd = document.getElementById('d' +i);
       ev = document.getElementById('e'+i);
-      console.log(dd)
       zahl = (i + 1) - dateDay;
       
       let dx = new Date(y, m, zahl);
