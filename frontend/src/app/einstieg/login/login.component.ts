@@ -31,7 +31,11 @@ export class LoginComponent implements OnInit {
   onLogin(){
     if (this.authentifizierungService.authentifizieren(this.user)) 
     {
-      this.router.navigate(['/kalender'])
+      if(sessionStorage.getItem('admin') === '1')
+        this.router.navigate(['/dozentenliste'])
+      else {
+        this.router.navigate(['/kalender'])
+      }
       this.falscherLogin = false
     } else {
       this.falscherLogin = true
