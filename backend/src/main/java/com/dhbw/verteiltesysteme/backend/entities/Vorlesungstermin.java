@@ -27,7 +27,7 @@ public class Vorlesungstermin {
 	
 	@JsonBackReference(value = "veranstaltung")
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "veranstatungs_Id", referencedColumnName ="id")
+	@JoinColumn(name = "veranstatung_Id", referencedColumnName ="id")
 	private Veranstaltung veranstaltung;
 
 	public Vorlesungstermin() {
