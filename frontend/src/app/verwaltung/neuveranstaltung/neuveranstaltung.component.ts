@@ -31,10 +31,10 @@ export class NeuveranstaltungComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.kursService.findAll().subscribe(data => {
+    this.kursService.findAll().then(data => {
       this.kurse = data;
     });
-    this.userService.findAll().subscribe(data => {
+    this.userService.findAll().then(data => {
       this.users = data;
     });
 

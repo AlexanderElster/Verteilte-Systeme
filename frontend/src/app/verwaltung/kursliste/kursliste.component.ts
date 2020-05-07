@@ -19,7 +19,7 @@ export class KurslisteComponent implements OnInit {
   constructor(private kursService: KursServiceService, private userService: UserServiceService, private router: Router, private loginService: AuthentifizierungService, private vorlesungsterminService: VorlesungsterminService) { }
 
   ngOnInit(): void {
-    this.kursService.findAll().subscribe(data => {
+    this.kursService.findAll().then(data => {
       this.kurse = data;
       for (let kurs of this.kurse) {
         this.userService.findById(kurs.studleiterId).then((user) => {kurs.studleiter = user});

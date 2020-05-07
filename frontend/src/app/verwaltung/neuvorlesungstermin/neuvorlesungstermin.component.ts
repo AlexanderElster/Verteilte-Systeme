@@ -34,14 +34,14 @@ export class NeuvorlesungsterminComponent implements OnInit {
   ) {this.vorlesungstermin = new Vorlesungstermin(null, null, null,null,null,null)}
 
   ngOnInit(): void {
-    this.veranstaltungsService.findAll().subscribe(data => {
+    this.veranstaltungsService.findAll().then(data => {
       this.veranstaltungen = data;
 
       for(let veranstaltung of this.veranstaltungen){
         this.userService.findById(veranstaltung.dozentId).then(dozent => {
           veranstaltung.dozent = dozent});
         
-        this.kursService.findById(veranstaltung.kursId).subscribe(kurs =>
+        this.kursService.findById(veranstaltung.kursId).then(kurs =>
           veranstaltung.kurs = kurs)
       }
     });

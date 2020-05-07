@@ -38,7 +38,7 @@ export class KalenderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userService.findById(2001).then( (result) => {
+    this.userService.findById(parseInt(sessionStorage.getItem('uid'))).then( (result) => {
       this.user = result;
 
       for(let veranstaltung of this.user.veranstaltungen) {
@@ -47,6 +47,8 @@ export class KalenderComponent implements OnInit {
         }
       }
     });
+
+    console.log(this.vorlTermine);
 
     if(!this.loginService.istUserEingeloggt()) {
       this.router.navigate(['/login'])

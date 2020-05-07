@@ -18,14 +18,14 @@ export class VeranstaltungenlisteComponent implements OnInit {
   constructor(private veranstaltungService: VeranstaltungServiceService, private userService: UserServiceService, private kursService: KursServiceService, private router: Router, private loginService: AuthentifizierungService) { }
 
   ngOnInit(): void {
-    this.veranstaltungService.findAll().subscribe(data => {
+    this.veranstaltungService.findAll().then(data => {
       this.veranstaltungen = data;
 
       for (let veranstaltung of this.veranstaltungen) {
         this.userService.findById(veranstaltung.dozentId).then(dozent => 
           {veranstaltung.dozent = dozent});
         
-        this.kursService.findById(veranstaltung.kursId).subscribe(kurs =>
+        this.kursService.findById(veranstaltung.kursId).then(kurs =>
           veranstaltung.kurs = kurs)
         }
     });

@@ -12,12 +12,12 @@ export class KursServiceService {
   constructor(private http: HttpClient) {
   }
 
-  public findAll(): Observable<Kurs[]> {
-    return this.http.get<Kurs[]>(`http://localhost:8080/api/kurs/all`);
+  public async findAll() {
+    return this.http.get<Kurs[]>(`http://localhost:8080/api/kurs/all`).toPromise();
   }
 
-  public findById(id: number) {
-    return this.http.get<Kurs>(`http://localhost:8080/api/kurs/${id}`);
+  public async findById(id: number) {
+    return this.http.get<Kurs>(`http://localhost:8080/api/kurs/${id}`).toPromise();
   }
 
   public save(kurs: Kurs) {

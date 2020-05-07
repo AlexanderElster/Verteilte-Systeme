@@ -10,8 +10,8 @@ export class VorlesungsterminService {
 
   constructor(private http: HttpClient) { }
 
-  public findAll(): Observable<Vorlesungstermin[]> {
-    return this.http.get<Vorlesungstermin[]>('http://localhost:8080/api/vorlesungstermin/all');
+  public async findAll() {
+    return this.http.get<Vorlesungstermin[]>('http://localhost:8080/api/vorlesungstermin/all').toPromise();
   }
   public async findById(id: number){
     return this.http.get<Vorlesungstermin>(`http://localhost:8080/api/vorlesungstermin/${id}`).toPromise();

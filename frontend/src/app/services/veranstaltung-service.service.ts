@@ -13,12 +13,12 @@ export class VeranstaltungServiceService {
 
    }
 
-   public findAll(): Observable<Veranstaltung[]> {
-     return this.http.get<Veranstaltung[]>(`http://localhost:8080/api/veranstaltung/all`);
+   public async findAll() {
+     return this.http.get<Veranstaltung[]>(`http://localhost:8080/api/veranstaltung/all`).toPromise();
    }
 
-   public findById(id: number)  {
-    return this.http.get<Veranstaltung>(`http://localhost:8080/api/user/${id}`);
+   public async findById(id: number)  {
+    return this.http.get<Veranstaltung>(`http://localhost:8080/api/user/${id}`).toPromise();
   }
 
    public save(veranstaltung: Veranstaltung) {

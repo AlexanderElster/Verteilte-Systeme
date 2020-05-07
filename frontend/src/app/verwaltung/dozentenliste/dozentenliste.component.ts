@@ -18,7 +18,7 @@ export class DozentenlisteComponent implements OnInit {
   constructor(private userService: UserServiceService, private loginService: AuthentifizierungService ,private router: Router) { }
 
   ngOnInit() {
-    this.userService.findAll().subscribe(data => {
+    this.userService.findAll().then(data => {
       this.users = data;
       
       if(!this.loginService.istUserEingeloggt()) {

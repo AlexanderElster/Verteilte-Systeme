@@ -26,7 +26,7 @@ export class NeukursComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    this.userService.findAll().subscribe(data => {
+    this.userService.findAll().then(data => {
       this.users = data;
   });
 

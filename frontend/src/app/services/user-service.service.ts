@@ -15,8 +15,8 @@ export class UserServiceService {
   constructor(private http: HttpClient) { 
   }
 
-  public findAll(): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:8080/api/user/all');
+  public async findAll() {
+    return this.http.get<User[]>('http://localhost:8080/api/user/all').toPromise();
   }
 
   public async findById(id: number)  {
