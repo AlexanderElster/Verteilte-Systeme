@@ -38,7 +38,7 @@ public class VorlesungsterminController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Optional<Vorlesungstermin>> getVeranstaltung(@PathVariable int id) {
+	public ResponseEntity<Optional<Vorlesungstermin>> getVorlesungstermin(@PathVariable int id) {
 		return ResponseEntity.ok(repository.findById(id));
 	}
 
