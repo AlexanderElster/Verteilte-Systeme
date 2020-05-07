@@ -4,6 +4,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 import { User } from 'src/app/model/user';
 import { Kurs } from 'src/app/model/kurs';
 import { KursServiceService } from 'src/app/services/kurs-service.service';
+import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
 
 @Component({
   selector: 'app-neukurs',
@@ -19,7 +20,8 @@ export class NeukursComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private kursService: KursServiceService,
-    private userService: UserServiceService) {
+    private userService: UserServiceService,
+    private loginService: AuthentifizierungService) {
       this.kurs = new Kurs(null, null, null, null, null)
      }
 
@@ -27,6 +29,11 @@ export class NeukursComponent implements OnInit {
     this.userService.findAll().subscribe(data => {
       this.users = data;
   });
+
+  if(!this.loginService.istUserEingeloggt()) {
+    this.router.navigate(['/login'])
+  }
+
 }
 
   onSubmit() {

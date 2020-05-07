@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { KursServiceService } from 'src/app/services/kurs-service.service';
 import { VeranstaltungServiceService } from 'src/app/services/veranstaltung-service.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
+import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
 
 @Component({
   selector: 'app-neuveranstaltung',
@@ -23,7 +24,8 @@ export class NeuveranstaltungComponent implements OnInit {
     private router: Router,
     private veranstaltungService: VeranstaltungServiceService,
     private kursService: KursServiceService,
-    private userService: UserServiceService
+    private userService: UserServiceService,
+    private loginService: AuthentifizierungService
   ) {
     this.veranstaltung = new Veranstaltung(null, null, null, null, null, null);
    }
@@ -36,6 +38,10 @@ export class NeuveranstaltungComponent implements OnInit {
       this.users = data;
     });
     console.log(this.kurse);
+
+    if(!this.loginService.istUserEingeloggt()) {
+      this.router.navigate(['/login'])
+    }
   }
   
   onSubmit() {

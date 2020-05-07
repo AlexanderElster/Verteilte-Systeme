@@ -2,7 +2,7 @@ import { Veranstaltung } from './veranstaltung';
 import { Kurs } from './kurs';
 
 export class User {
-constructor(id: number, title: string, nachname: string, vorname: string, passwort: string, email: string, handynr: string, veranstaltungen: Veranstaltung[], kurse: Kurs[]){
+constructor(id: number, title: string, nachname: string, vorname: string, passwort: string, email: string, handynr: string, admin: boolean ,veranstaltungen: Veranstaltung[], kurse: Kurs[]){
 
 }
 
@@ -13,6 +13,7 @@ constructor(id: number, title: string, nachname: string, vorname: string, passwo
     passwort: string;
     email: string;
     handynr: string;
+    admin: boolean;
     veranstaltungen: Veranstaltung[];
     kurse: Kurs[];
 }

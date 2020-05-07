@@ -8,6 +8,7 @@ import { VorlesungsterminService } from 'src/app/services/vorlesungstermin.servi
 import { Kurs } from 'src/app/model/kurs';
 import { User } from 'src/app/model/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
+import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
 
 @Component({
   selector: 'app-neuvorlesungstermin',
@@ -28,7 +29,8 @@ export class NeuvorlesungsterminComponent implements OnInit {
     private kursService: KursServiceService,
     private veranstaltungsService: VeranstaltungServiceService,
     private userService: UserServiceService,
-    private vorlesungsterminsterminService : VorlesungsterminService
+    private vorlesungsterminsterminService : VorlesungsterminService,
+    private loginService: AuthentifizierungService
   ) {this.vorlesungstermin = new Vorlesungstermin(null, null, null,null,null,null)}
 
   ngOnInit(): void {
@@ -44,6 +46,10 @@ export class NeuvorlesungsterminComponent implements OnInit {
       }
     });
     
+    if(!this.loginService.istUserEingeloggt()) {
+      this.router.navigate(['/login'])
+    }
+
     /*
     console.log(this.veranstaltungen);
     console.log(this.kurse);

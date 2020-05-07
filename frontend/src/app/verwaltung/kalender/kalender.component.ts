@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Vorlesungstermin } from 'src/app/model/vorlesungstermin';
 import { Veranstaltung } from 'src/app/model/veranstaltung';
+
 import { VorlesungsterminService } from 'src/app/services/vorlesungstermin.service';
+import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,13 +22,39 @@ export class KalenderComponent implements OnInit {
   selectedDate;
   selectedYear;
 
-  testTermin : Vorlesungstermin;
 
-  constructor(private vorlesungsterminService: VorlesungsterminService) { }
+  user: User;
+  vorlTermine: Vorlesungstermin[];
+
+  constructor(private vorlesungsterminService: VorlesungsterminService,private veranstaltungService: VeranstaltungServiceService,
+     private userService: UserServiceService, private kursService: KursServiceService, private loginService: AuthentifizierungService, private router: Router ) {     
+     }
+
+     ausgabe(){
+      console.log(this.vorlTermine);
+     }
 
   ngOnInit(): void {
-    this.vorlesungsterminService.findById(2013).subscribe(termin => this.testTermin = termin);
-    console.log("Testermin: "+this.testTermin)
+    this.userService.findById(2003).subscribe(data => {
+      this.user = data;
+      
+      let i = 0;
+      for(let veranstaltung of this.user.veranstaltungen){
+        
+        for(let vorlesungstermin of veranstaltung.vorlesungstermine){
+
+          console.log(vorlesungstermin);
+          this.vorlTermine.push(vorlesungstermin);
+          i++;
+        }
+      }
+      //console.log(this.vorlTermine);
+    });
+
+    if(!this.loginService.istUserEingeloggt()) {
+      this.router.navigate(['/login'])
+    }
+
     this.selectedDate = new Date();
     this.monthCounter = this.selectedDate.getMonth();
     this.selectedYear = this.selectedDate.getFullYear();
