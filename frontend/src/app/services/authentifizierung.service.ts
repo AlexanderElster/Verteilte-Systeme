@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class AuthentifizierungService {
   constructor() { }
 
   authentifizieren(user: User) {
-    if (user.id != null) {
+    if (user.id != 0) {
       sessionStorage.setItem('uid', user.id.toString())
       if (user.admin) {
         sessionStorage.setItem('admin', '1')
@@ -20,13 +21,14 @@ export class AuthentifizierungService {
       return true;
     }
     else {
+      sessionStorage.setItem('uid', 'null')
       return false;
     }
   }
 
   istUserEingeloggt() {
     let uid = sessionStorage.getItem('uid')
-    if (uid === 'null') {
+    if (uid === null || 'null') {
       return false
     }
     else {
@@ -46,5 +48,6 @@ export class AuthentifizierungService {
 
   logOut() {
     sessionStorage.removeItem('uid')
+    window.location.reload()
   }
 }

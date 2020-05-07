@@ -43,7 +43,7 @@ public class VorlesungsterminController {
 	}
 
 	@PostMapping(path = "/add")
-	public void addUser(@RequestBody VorlesungsterminModel vorlesungsterminm) throws IOException {
+	public void addVorlesungstermin(@RequestBody VorlesungsterminModel vorlesungsterminm) throws IOException {
 		String veranstaltungsId = vorlesungsterminm.getVeranstaltungsId();
 
 		URL url = new URL("http://localhost:8080/api/veranstaltung/" + veranstaltungsId);

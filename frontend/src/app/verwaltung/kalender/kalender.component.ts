@@ -5,6 +5,10 @@ import { Veranstaltung } from 'src/app/model/veranstaltung';
 import { VorlesungsterminService } from 'src/app/services/vorlesungstermin.service';
 import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/model/user';
+import { UserServiceService } from 'src/app/services/user-service.service';
+import { KursServiceService } from 'src/app/services/kurs-service.service';
+import { VeranstaltungServiceService } from 'src/app/services/veranstaltung-service.service';
 
 
 @Component({
@@ -25,9 +29,10 @@ export class KalenderComponent implements OnInit {
 
   user: User;
   vorlTermine: Vorlesungstermin[];
+  testTermin: Vorlesungstermin;
 
   constructor(private vorlesungsterminService: VorlesungsterminService,private veranstaltungService: VeranstaltungServiceService,
-     private userService: UserServiceService, private kursService: KursServiceService, private loginService: AuthentifizierungService, private router: Router ) {     
+     private userService: UserServiceService, private kursService: KursServiceService, private loginService: AuthentifizierungService, private router: Router) {   
      }
 
      ausgabe(){
@@ -35,6 +40,9 @@ export class KalenderComponent implements OnInit {
      }
 
   ngOnInit(): void {
+
+       console.log(this.getTermin(2004));
+    /*
     this.userService.findById(2003).subscribe(data => {
       this.user = data;
       
@@ -48,8 +56,11 @@ export class KalenderComponent implements OnInit {
           i++;
         }
       }
+      
       //console.log(this.vorlTermine);
     });
+
+    */
 
     if(!this.loginService.istUserEingeloggt()) {
       this.router.navigate(['/login'])
@@ -60,6 +71,10 @@ export class KalenderComponent implements OnInit {
     this.selectedYear = this.selectedDate.getFullYear();
     this.getSelectedMonth();
     this.loadCalendar();
+  }
+
+  getTermin(id: number) {
+    this.vorlesungsterminService.findById(id).toPromise().then
   }
 
   getSelectedMonth() {

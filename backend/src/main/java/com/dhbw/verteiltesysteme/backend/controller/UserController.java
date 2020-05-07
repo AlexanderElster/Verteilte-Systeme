@@ -47,7 +47,7 @@ public class UserController {
 		Optional<User> loginUser = repository.findByEmail(userEmail);
 			User user = loginUser.get();
 			User notFound;
-			notFound = new User(null,null,null,null,null,null,null,null);
+			notFound = new User();
 		if(user.getEmail().equals(userEmail))
 				{
 					if(user.getPasswort().equals(userPasswort))

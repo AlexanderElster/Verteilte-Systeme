@@ -4,6 +4,8 @@ import { KursServiceService } from 'src/app/services/kurs-service.service';
 import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
+import { VorlesungsterminService } from 'src/app/services/vorlesungstermin.service';
+import { Vorlesungstermin } from 'src/app/model/vorlesungstermin';
 
 @Component({
   selector: 'app-kursliste',
@@ -14,7 +16,7 @@ export class KurslisteComponent implements OnInit {
 
   kurse: Kurs[];
 
-  constructor(private kursService: KursServiceService, private userService: UserServiceService, private router: Router, private loginService: AuthentifizierungService) { }
+  constructor(private kursService: KursServiceService, private userService: UserServiceService, private router: Router, private loginService: AuthentifizierungService, private vorlesungsterminService: VorlesungsterminService) { }
 
   ngOnInit(): void {
     this.kursService.findAll().subscribe(data => {

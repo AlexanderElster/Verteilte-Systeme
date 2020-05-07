@@ -11,8 +11,4 @@ export class Vorlesungstermin {
     endezeit: string;
     veranstaltungsId : number;
     veranstaltung: Veranstaltung;
-
-    getID(){
-        return this.id;
-    }
 }

@@ -3,6 +3,8 @@ import { User } from 'src/app/model/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { Router } from '@angular/router';
 import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
+import { LoginUser } from 'src/app/model/loginUser';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -14,13 +16,16 @@ export class LoginComponent implements OnInit {
 
   user: User;
   falscherLogin = false;
+  loginUser: LoginUser;
+  login=  false;
 
   constructor(
     private userService: UserServiceService,
     private router: Router,
     private authentifizierungService: AuthentifizierungService
   ) { 
-    this.user = new User(null, null, null, null, null, null, null, null, null, null);
+    this.user = new User(0, null, null, null, null, null, null, null, null, null);
+    this.loginUser= new LoginUser(null,null);
   }
   
   
@@ -29,16 +34,20 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    if (this.authentifizierungService.authentifizieren(this.user)) 
-    {
-      if(sessionStorage.getItem('admin') === '1')
-        this.router.navigate(['/dozentenliste'])
-      else {
-        this.router.navigate(['/kalender'])
+    this.userService.login(this.loginUser).then( (result) => {
+      this.user = result;
+      console.log(this.user);
+      if (this.authentifizierungService.authentifizieren(this.user))
+      {
+        if(this.user.admin == true)
+          this.router.navigate(['/dozentenliste'])
+        else {
+          this.router.navigate(['/kalender'])
+        }
+        this.falscherLogin = false
+      } else {
+        this.falscherLogin = true
       }
-      this.falscherLogin = false
-    } else {
-      this.falscherLogin = true
-    }
+    });
   }
 }

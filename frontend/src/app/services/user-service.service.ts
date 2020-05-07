@@ -2,6 +2,7 @@ import { Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { User } from '../model/user';
 import { Observable } from 'rxjs';
+import { LoginUser } from '../model/loginUser';
 
 
 @Injectable({
@@ -32,5 +33,9 @@ export class UserServiceService {
 
   public update(user: User): void{
     this.http.post(`http://localhost:8080/api/user/update/${user.id}`, user).subscribe();
+  }
+
+  public async login(logUser : LoginUser) {
+    return this.http.post<User>('http://localhost:8080/api/user/login', logUser).toPromise();
   }
 }
