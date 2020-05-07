@@ -19,6 +19,7 @@ export class DozentenlisteComponent implements OnInit {
   ngOnInit() {
     this.userService.findAll().subscribe(data => {
       this.users = data;
+      console.log(this.users);
     });
   }
 
