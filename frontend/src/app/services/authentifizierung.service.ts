@@ -11,6 +11,12 @@ export class AuthentifizierungService {
   authentifizieren(user: User) {
     if (user.id != null) {
       sessionStorage.setItem('uid', user.id.toString())
+      if (user.admin) {
+        sessionStorage.setItem('admin', '1')
+      }
+      else {
+        sessionStorage.setItem('admin', '0')
+      }
       return true;
     }
     else {
@@ -25,6 +31,16 @@ export class AuthentifizierungService {
     }
     else {
       return true
+    }
+  }
+
+  istUserAdmin() {
+    let admin = sessionStorage.getItem('admin')
+    if (admin === '1') {
+      return true
+    }
+    else {
+      return false;
     }
   }
 

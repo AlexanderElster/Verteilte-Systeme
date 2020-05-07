@@ -4,6 +4,7 @@ import { VeranstaltungServiceService } from 'src/app/services/veranstaltung-serv
 import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { KursServiceService } from 'src/app/services/kurs-service.service';
+import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
 
 @Component({
   selector: 'app-veranstaltungenliste',
@@ -14,7 +15,7 @@ export class VeranstaltungenlisteComponent implements OnInit {
 
   veranstaltungen: Veranstaltung[];
 
-  constructor(private veranstaltungService: VeranstaltungServiceService, private userService: UserServiceService, private kursService: KursServiceService, private router: Router) { }
+  constructor(private veranstaltungService: VeranstaltungServiceService, private userService: UserServiceService, private kursService: KursServiceService, private router: Router, private loginService: AuthentifizierungService) { }
 
   ngOnInit(): void {
     this.veranstaltungService.findAll().subscribe(data => {
@@ -28,6 +29,11 @@ export class VeranstaltungenlisteComponent implements OnInit {
           veranstaltung.kurs = kurs)
         }
     });
+
+    if(!this.loginService.istUserEingeloggt()) {
+      this.router.navigate(['/login'])
+    }
+
   }
 
   deleteVeranstaltung(veranstaltung: Veranstaltung) {

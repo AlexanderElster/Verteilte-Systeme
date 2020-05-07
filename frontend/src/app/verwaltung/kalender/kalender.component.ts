@@ -6,6 +6,8 @@ import { KursServiceService } from 'src/app/services/kurs-service.service';
 import { Vorlesungstermin } from 'src/app/model/vorlesungstermin';
 import { User } from 'src/app/model/user';
 import { Veranstaltung } from 'src/app/model/veranstaltung';
+import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,10 +28,9 @@ export class KalenderComponent implements OnInit {
 
   user: User;
   vorlTermine: Vorlesungstermin[];
- 
 
   constructor(private vorlesungsterminService: VorlesungsterminService,private veranstaltungService: VeranstaltungServiceService,
-     private userService: UserServiceService, private kursService: KursServiceService ) {     
+     private userService: UserServiceService, private kursService: KursServiceService, private loginService: AuthentifizierungService, private router: Router ) {     
      }
 
      ausgabe(){
@@ -52,6 +53,10 @@ export class KalenderComponent implements OnInit {
       }
       //console.log(this.vorlTermine);
     });
+
+    if(!this.loginService.istUserEingeloggt()) {
+      this.router.navigate(['/login'])
+    }
 
     this.selectedDate = new Date();
     this.monthCounter = this.selectedDate.getMonth();

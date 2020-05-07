@@ -30,6 +30,8 @@ public class User {
 
 	private String handynr;
 	
+	private boolean admin; 
+	
 	@JsonManagedReference(value = "studleiter")
 	@OneToMany(mappedBy = "studleiter")
 	private Set<Kurs> kurse;
@@ -41,16 +43,17 @@ public class User {
 	public User() {
 	}
 	
-	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr) {
+	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr, boolean admin) {
 		this.setTitel(titel);
 		this.setNachname(nachname);
 		this.setVorname(vorname);
 		this.setPasswort(passwort);
 		this.setEmail(email);
 		this.setHandynr(handynr);
+		this.setAdmin(admin);
 	}
 	
-	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr, Set<Veranstaltung> veranstaltungen, Set<Kurs> kurse) {
+	public User(String titel, String nachname, String vorname, String passwort, String email, String handynr, boolean admin ,Set<Veranstaltung> veranstaltungen, Set<Kurs> kurse) {
 
 		this.setTitel(titel);
 		this.setNachname(nachname);
@@ -60,6 +63,7 @@ public class User {
 		this.setHandynr(handynr);
 		this.setVeranstaltungen(veranstaltungen);
 		this.setKurse(kurse);
+		this.setAdmin(admin);
 		this.veranstaltungen.forEach(x -> x.setDozent(this));
 		this.kurse.forEach(x -> x.setStudleiter(this));
 	}
@@ -130,6 +134,14 @@ public class User {
 	
 	public Set<Kurs> getKurse() {
 		return kurse;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 	
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { Router } from '@angular/router';
+import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
 
 
 @Component({
@@ -12,12 +13,14 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   user: User;
+  falscherLogin = false;
 
   constructor(
     private userService: UserServiceService,
-    private router: Router
+    private router: Router,
+    private authentifizierungService: AuthentifizierungService
   ) { 
-    this.user = new User(null, null, null, null, null, null, null, null, null);
+    this.user = new User(null, null, null, null, null, null, null, null, null, null);
   }
   
   
@@ -26,6 +29,12 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    
+    if (this.authentifizierungService.authentifizieren(this.user)) 
+    {
+      this.router.navigate(['/kalender'])
+      this.falscherLogin = false
+    } else {
+      this.falscherLogin = true
+    }
   }
 }

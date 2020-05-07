@@ -12,10 +12,15 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    sessionStorage.setItem('uid', null)
+    sessionStorage.setItem('uid', '1')
+    sessionStorage.setItem('admin', '0')
   }
 
   isLoggedIn() {
     return this.loginService.istUserEingeloggt()
+  }
+
+  isAdmin() {
+    return this.loginService.istUserAdmin()
   }
 }

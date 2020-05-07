@@ -3,6 +3,7 @@ import { Kurs } from 'src/app/model/kurs';
 import { KursServiceService } from 'src/app/services/kurs-service.service';
 import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/services/user-service.service';
+import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
 
 @Component({
   selector: 'app-kursliste',
@@ -13,7 +14,7 @@ export class KurslisteComponent implements OnInit {
 
   kurse: Kurs[];
 
-  constructor(private kursService: KursServiceService, private userService: UserServiceService, private router: Router) { }
+  constructor(private kursService: KursServiceService, private userService: UserServiceService, private router: Router, private loginService: AuthentifizierungService) { }
 
   ngOnInit(): void {
     this.kursService.findAll().subscribe(data => {
@@ -23,6 +24,11 @@ export class KurslisteComponent implements OnInit {
           )
         }
     });
+
+    if(!this.loginService.istUserEingeloggt()) {
+      this.router.navigate(['/login'])
+    }
+
   }
 
   deleteKurs(kurs: Kurs){

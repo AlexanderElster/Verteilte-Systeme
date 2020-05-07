@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { Router } from '@angular/router';
+import { AuthentifizierungService } from 'src/app/services/authentifizierung.service';
 
 
 
@@ -14,12 +15,16 @@ export class DozentenlisteComponent implements OnInit {
 
   users: User[];
 
-  constructor(private userService: UserServiceService, private router: Router) { }
+  constructor(private userService: UserServiceService, private loginService: AuthentifizierungService ,private router: Router) { }
 
   ngOnInit() {
     this.userService.findAll().subscribe(data => {
       this.users = data;
       console.log(this.users);
+      
+      if(!this.loginService.istUserEingeloggt()) {
+        this.router.navigate(['/login'])
+      }
     });
   }
 
