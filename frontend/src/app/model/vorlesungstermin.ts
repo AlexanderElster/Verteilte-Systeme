@@ -2,7 +2,7 @@
 import { Veranstaltung } from './veranstaltung';
 
 export class Vorlesungstermin {
-    constructor(id: number, anfangszeit, datum, endezeit, veranstaltung: Veranstaltung){
+    constructor(id: number, anfangszeit, datum, endezeit, veranstaltungsId : number ,veranstaltung: Veranstaltung){
 
     }
 
@@ -10,5 +10,6 @@ export class Vorlesungstermin {
     anfangszeit;
     datum: Date;
     endezeit;
+    veranstaltungsId : number;
     veranstaltung: Veranstaltung;
 }

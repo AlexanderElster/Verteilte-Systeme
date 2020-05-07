@@ -17,6 +17,10 @@ export class VeranstaltungServiceService {
      return this.http.get<Veranstaltung[]>(`http://localhost:8080/api/veranstaltung/all`);
    }
 
+   public findById(id: number)  {
+    return this.http.get<Veranstaltung>(`http://localhost:8080/api/user/${id}`);
+  }
+
    public save(veranstaltung: Veranstaltung) {
      return this.http.post<Veranstaltung>(`http://localhost:8080/api/veranstaltung/add`, veranstaltung)
    }

@@ -2,18 +2,26 @@ package com.dhbw.verteiltesysteme.backend.entities;
 
 public class VorlesungsterminModel {
 	
+	private int id;
 	private String anfangszeit;
 	private String datum;
 	private String endezeit;
 	private String veranstaltungsId;
 	
-	public VorlesungsterminModel(String anfangszeit, String datum, String endezeit, String veranstaltungsId) {
+	public VorlesungsterminModel(int id, String anfangszeit, String datum, String endezeit, String veranstaltungsId) {
+		this.setId(id);
 		this.setAnfangszeit(anfangszeit);
 		this.setDatum(datum);
 		this.setEndezeit(endezeit);
 		this.setVeranstaltungsId(veranstaltungsId);
 	}
-	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getAnfangszeit() {
 		return anfangszeit;
 	}
@@ -35,7 +43,7 @@ public class VorlesungsterminModel {
 	public String getVeranstaltungsId() {
 		return veranstaltungsId;
 	}
-	public void setVeranstaltungsId(String veranstaltungId) {
-		this.veranstaltungsId = veranstaltungId;
+	public void setVeranstaltungsId(String veranstaltungsId) {
+		this.veranstaltungsId = veranstaltungsId;
 	}
 }
