@@ -25,7 +25,7 @@ export class NeuveranstaltungComponent implements OnInit {
     private kursService: KursServiceService,
     private userService: UserServiceService
   ) {
-    this.veranstaltung = new Veranstaltung(null, null, null, null, null);
+    this.veranstaltung = new Veranstaltung(null, null, null, null, null, null);
    }
 
   ngOnInit(): void {

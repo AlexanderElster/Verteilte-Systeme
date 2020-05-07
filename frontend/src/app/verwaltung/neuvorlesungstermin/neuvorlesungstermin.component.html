@@ -4,17 +4,17 @@
         <form (ngSubmit)="onSubmit()" #vorlesungsForm="ngForm">
             <div class="form-group">
                 <label for="veranstaltung">Veranstaltung</label>
-                <select type="text" [(ngModel)]="vorlesungstermin.veranstaltung" class="form-control" id="veranstaltung"
-                    name="veranstaltung" required #veranstaltung="ngModel">
+                <select type="text" [(ngModel)]="vorlesungstermin.veranstaltungsId" class="form-control" id="veranstaltungsId"
+                    name="veranstaltungsId" required #veranstaltungsId="ngModel">
                     <option *ngFor="let veranstaltung of veranstaltungen" value="{{veranstaltung.id}}">
-                        {{veranstaltung.bezeichnung}}<!--{{veranstaltung.kurs.kursbezeichnung}}
+                        {{veranstaltung.bezeichnung}} {{veranstaltung.kurs.kursbezeichnung}}
                         {{veranstaltung.dozent.titel}} {{veranstaltung.dozent.vorname}}
-                        {{veranstaltung.dozent.nachname}}--> 
+                        {{veranstaltung.dozent.nachname}}
                         
                     </option>
                 </select>
             </div>
-            <div *ngIf="veranstaltung.touched && veranstaltung.invalid" class="alert alert-danger">Bitte wählen Sie eine Veranstaltung aus.</div>
+            <div *ngIf="veranstaltungsId.touched && veranstaltungsId.invalid" class="alert alert-danger">Bitte wählen Sie eine Veranstaltung aus.</div>
             <div class="form-group">
                 <label for="datum">Datum</label> <br>
                 <input type="date" [(ngModel)]="vorlesungstermin.datum" id="datum" name="datum" required #datum="ngModel">
