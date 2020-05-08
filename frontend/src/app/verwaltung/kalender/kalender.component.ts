@@ -9,6 +9,8 @@ import { User } from 'src/app/model/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { KursServiceService } from 'src/app/services/kurs-service.service';
 import { VeranstaltungServiceService } from 'src/app/services/veranstaltung-service.service';
+import { NgIfContext } from '@angular/common';
+import { zipAll } from 'rxjs/operators';
 
 
 @Component({
@@ -19,7 +21,7 @@ import { VeranstaltungServiceService } from 'src/app/services/veranstaltung-serv
 export class KalenderComponent implements OnInit {
 
   months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
-  
+
   monthCounter
   selectedMonth;
 
@@ -28,29 +30,17 @@ export class KalenderComponent implements OnInit {
 
 
   user: User;
-  testTermin: Vorlesungstermin;
   vorlTermine: Array<Vorlesungstermin> = [];
+  veranstaltungen: Array<Veranstaltung> = [];
 
-  constructor(private vorlesungsterminService: VorlesungsterminService,private veranstaltungService: VeranstaltungServiceService,
-     private userService: UserServiceService, private kursService: KursServiceService, private loginService: AuthentifizierungService, private router: Router) { 
-     }
+  constructor(private vorlesungsterminService: VorlesungsterminService, private veranstaltungService: VeranstaltungServiceService,
+    private userService: UserServiceService, private kursService: KursServiceService, private loginService: AuthentifizierungService, private router: Router) {
+  }
 
 
   ngOnInit(): void {
 
-    this.userService.findById(parseInt(sessionStorage.getItem('uid'))).then( (result) => {
-      this.user = result;
-
-      for(let veranstaltung of this.user.veranstaltungen) {
-        for(let vorlesungstermin of veranstaltung.vorlesungstermine){
-          this.vorlTermine.push(vorlesungstermin)
-        }
-      }
-    });
-
-    console.log(this.vorlTermine);
-
-    if(!this.loginService.istUserEingeloggt()) {
+    if (!this.loginService.istUserEingeloggt()) {
       this.router.navigate(['/login'])
     }
 
@@ -82,71 +72,98 @@ export class KalenderComponent implements OnInit {
   }
 
   loadCalendar() {
-    let d = this.selectedDate;
-    let m = d.getMonth();
-    let y = d.getFullYear();
+    this.userService.findById(parseInt(sessionStorage.getItem('uid'))).then((result) => {
+      this.user = result;
 
-    let firstD = d;
-    firstD.setDate(1);
-
-    let dateDay = firstD.getDay();
-    dateDay = (dateDay == 0) ? 7 : dateDay;
-
-    let entry;
-    let zahl;
-
-
-    
-    let dd; 
-    let ev;
-    let hD = new Date();
-
-    for (let i = 1; i <= 42; i++) {
-      entry = document.getElementById('k' + i);
-      dd = document.getElementById('d' +i);
-      ev = document.getElementById('e'+i);
-      zahl = (i + 1) - dateDay;
-      
-      let dx = new Date(y, m, zahl);
-
-      if (i >= dateDay && this.isValidDate(y, m, zahl)) {
-        entry.innerHTML = '<a  href=javascript: putDate(' + zahl + ')>' + zahl + '</a>';
-        entry.hidden = false;
-        entry.style.visibility = 'visible';
-        entry.style.border = 'solid 1px';
-
-        if (!this.getEventtext(y, m, zahl)) { entry.style.color = '000000'; }
-        else {/*
-          let testtermin = new Vorlesungstermin(1, "09:00", "2020-05-10", "12:00", 2009, new Veranstaltung(null, null, null, null, null, null));
-          let VorlArray = [testtermin];
-          
-          console.log(testtermin);*/
-          entry.innerHTML='<a  href=javascript: putDate(' + zahl + ')>' + zahl + '</a><br>Vorlesungstermin';
-          //ev.innerHTML = 'Event';
-          //dd.innerHTML= this.getEventtext(y, m, zahl);
-        }
-
-        //heutiges Datum hervorheben
-        if (hD.getDate() == dx.getDate() &&
-          hD.getMonth() == dx.getMonth() &&
-          hD.getFullYear() == dx.getFullYear() &&
-          hD.getMonth() == this.selectedDate.getMonth()) {
-          entry.style.fontWeight = 'bold';
+      for (let veranstaltung of this.user.veranstaltungen) {
+        this.veranstaltungen.push(veranstaltung)
+        for (let vorlesungstermin of veranstaltung.vorlesungstermine) {
+          this.vorlTermine.push(vorlesungstermin)
         }
       }
-      else {
-          entry.innerHTML= "";
+      console.log(this.veranstaltungen);
+      let d = this.selectedDate;
+      let m = d.getMonth();
+      let y = d.getFullYear();
 
-        if (i >= dateDay) {//Wenn Kalenderende
-          //Zelle = hidden
-          entry.hidden = true;
-          entry.style.border = '0px';
+      let firstD = d;
+      firstD.setDate(1);
+
+      let dateDay = firstD.getDay();
+      dateDay = (dateDay == 0) ? 7 : dateDay;
+
+      let entry;
+      let zahl;
+
+      let dd;
+      let ev;
+      let hD = new Date();
+
+      for (let i = 1; i <= 42; i++) {
+        entry = document.getElementById('k' + i);
+        dd = document.getElementById('d' + i);
+        ev = document.getElementById('e' + i);
+        zahl = (i + 1) - dateDay;
+
+        let dx = new Date(y, m, zahl);
+
+        if (i >= dateDay && this.isValidDate(y, m, zahl)) {
+
+          let od = zahl;
+          let om = m + 1;
+          let oy = y;
+          if (parseInt(od) < 10) {
+            od = "0" + od;
+          }
+          if (parseInt(m) < 10) {
+            om = "0" + om;
+          }
+          let givenDate = oy + "-" + om + "-" + od;
+          console.log("givenDate: " + givenDate);
+
+          entry.innerHTML = '<a  href=javascript: putDate(' + zahl + ')>' + zahl + '</a>';
+          entry.hidden = false;
+          entry.style.visibility = 'visible';
+          entry.style.border = 'solid 1px';
+
+          for (let vorlTermin of this.vorlTermine) {
+            for(let veranstaltung of this.veranstaltungen){
+              if(veranstaltung.id == vorlTermin.veranstaltungsId){
+                vorlTermin.veranstaltung = veranstaltung;
+              }
+            }
+            console.log("givenDate==vorl");
+            console.log("vorlTermin.veranstaltung")
+            console.log(vorlTermin.veranstaltung);
+            console.log(givenDate === vorlTermin.datum);
+            if (givenDate === vorlTermin.datum) {
+              entry.innerHTML = '<a  href=javascript: putDate(' + zahl + ')>' + zahl + '</a><br>Vorlesungstermin' + vorlTermin.anfangszeit + vorlTermin.veranstaltung.bezeichnung;
+            }
+            console.log(entry);
+          }
+
+          //heutiges Datum hervorheben
+          if (hD.getDate() == dx.getDate() &&
+            hD.getMonth() == dx.getMonth() &&
+            hD.getFullYear() == dx.getFullYear()) {
+            entry.style.fontWeight = 'bold';
+          }
         }
         else {
-          entry.style.border = '0px';
+          //entry.innerHTML = "";
+
+          if (i >= dateDay) {//Wenn Kalenderende
+            //Zelle = hidden
+            entry.hidden = true;
+            entry.style.border = '0px';
+          }
+          else {
+            entry.style.border = '0px';
+          }
         }
       }
     }
+    );
   }
 
   isValidDate(y, m, d) {
@@ -195,40 +212,5 @@ export class KalenderComponent implements OnInit {
     this.selectedDate = d;
     this.getSelectedMonth();
     this.loadCalendar();
-  }
-
-setEvent(y,m,d){
-
-}
-
-  getEventtext(y, m, d) {
-    y = parseInt(y);
-    m = parseInt(m);
-    d = parseInt(d);
-
-    m++;
-    //Mockdaten
-    var h = new Array(7);
-    h[0] = "04.05.2020|Rap Mayhem Festival, München";
-    h[1] = "1.2.2014|Spirit Of Goa, Hamburg";
-    h[2] = "16.2.2014|Emergenza Acoustic Festival, Berlin";
-    h[3] = "2.3.2014|Skarneval Koblenz, Wehdem";
-    h[4] = "12.4.2014|Balinger Rockfestival, Dillingen";
-    h[5] = "5.7.2014|HipHop Open, Stuttgart";
-    h[6] = "19.7.14|Feeling Fine Festival, Espelkamp";
-    h[7] = "26.7.14|Beach Party, Duisburg";
-
-    var dH;
-    var eH;
-    for (var i = 0; i < h.length; i++) {
-      //Datum eH[0] von Event eH[1] trennen
-      eH = h[i].split("|");
-      //Datum trennen > Tag dH[0], Monat dH[1], Jahr dH[2]
-      dH = eH[0].split(".");
-
-      if (parseInt(dH[0]) == d && parseInt(dH[1]) == m
-        && parseInt(dH[2]) == y) { return eH[1]; }
-    }
-    return false;
   }
 }//class
