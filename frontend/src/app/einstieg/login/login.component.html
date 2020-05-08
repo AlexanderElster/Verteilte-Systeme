@@ -2,20 +2,20 @@
     <div class="card-body">
         <form (ngSubmit)="onLogin()" #loginForm="ngForm">
             <div class="form-group">
-                <label for="email">{{ "LOGIN.EMAIL" | translate}}</label>
+                <label for="email">E-Mail</label>
                 <input type="text" [(ngModel)]="loginUser.email" class="form-control" id="email" name="email" required
                     #email="ngModel">
             </div>
-            <div *ngIf="email.touched && email.invalid" class="alert alert-danger">{{"LOGIN.WARNING.EMAIL" | translate}}</div>
+            <div *ngIf="email.touched && email.invalid" class="alert alert-danger">E-Mail wird benötigt</div>
             <div class="form-group">
-                <label for="password">{{"LOGIN.PASSWORD" | translate}}</label>
+                <label for="password">Passwort</label>
                 <input type="password" [(ngModel)]="loginUser.passwort" class="form-control" id="password" name="password"
                     required #password="ngModel">
             </div>
-            <div *ngIf="password.touched && password.invalid" class="alert alert-danger">{{"LOGIN.WARNING.PASSWORD" | translate}}</div>
+            <div *ngIf="password.touched && password.invalid" class="alert alert-danger">Passwort wird benötigt</div>
+            <div *ngIf="falscherLogin" class="alert alert-danger">E-Mail oder Passwort nicht korrekt!</div>
             <button type="submit" [disabled]="!loginForm.form.valid" class="btn btn-primary">
-                {{"LOGIN.LOGIN" | translate}}</button>
-            <div style="margin-top: 15px;"><button class="btn btn-light" disabled>{{"LOGIN.FORGOTPASSWORD" | translate}}</button></div>
+                Anmelden</button>
 
         </form>
     </div>

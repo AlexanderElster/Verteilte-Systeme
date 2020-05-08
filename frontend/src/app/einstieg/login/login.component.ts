@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   user: User;
   falscherLogin = false;
   loginUser: LoginUser;
-  login=  false;
 
   constructor(
     private userService: UserServiceService,

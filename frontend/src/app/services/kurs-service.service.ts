@@ -27,8 +27,4 @@ export class KursServiceService {
   public delete(id: number): void {
     this.http.delete(`http://localhost:8080/api/kurs/delete/${id}`).subscribe();
   }
-
-  public update(kurs: Kurs): void{
-    this.http.post(`http://localhost:8080/api/kurs/delete/${kurs.id}`, kurs).subscribe();
-  }
 }

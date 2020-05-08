@@ -5,7 +5,7 @@
             <div class="form-group">
                 <label for="kursbezeichnung">Kursbezeichnung</label>
                 <input type="text"  [(ngModel)]="kurs.kursbezeichnung" class="form-control"
-                    id="kursbezeichnung" name="kursbezeichnung" placeholder="Kursbezeichnung"  #kursbezeichnung="ngModel" required>
+                    id="kursbezeichnung" name="kursbezeichnung"   #kursbezeichnung="ngModel" required>
             </div>
             <div *ngIf="kursbezeichnung.touched && kursbezeichnung.invalid" class="alert alert-danger">Geben Sie eine Kursbezeichnung ein.</div>
             <div class="form-group">
@@ -16,8 +16,8 @@
                 </select>
             </div>
             <div *ngIf="studleiterId.touched && studleiterId.invalid" class="alert alert-danger">Wählen Sie einen Studiengangsleiter aus.</div>
-            <button type="submit" class="btn btn-primary" [disabled]="!kursForm.form.valid"><i class="fas fa-check"></i>  {{"GENERAL.ADD" | translate}}</button>
-            <a style="margin-left: 20px;" class="btn btn-secondary" routerLink="/kursliste"><i class="fas fa-times"></i>  {{"GENERAL.CANCEL" | translate}}</a>
+            <button type="submit" class="btn btn-primary" [disabled]="!kursForm.form.valid"><i class="fas fa-check"></i>  Anlegen</button>
+            <a style="margin-left: 20px;" class="btn btn-secondary" routerLink="/kursliste"><i class="fas fa-times"></i>  Abbrechen</a>
         </form>
     </div>
 </div>

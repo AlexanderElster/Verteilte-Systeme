@@ -19,10 +19,7 @@ export class VorlesungsterminService {
   public save(vorlesungstermin: Vorlesungstermin) {
     return this.http.post<Vorlesungstermin>('http://localhost:8080/api/vorlesungstermin/add', vorlesungstermin);
   }
-  public update(vorlesungstermin: Vorlesungstermin): void{
-    this.http.post(`http://localhost:8080/api/vorlesungstermin/update/${vorlesungstermin.id}`, vorlesungstermin).subscribe();
-  }
-  public delete(id: number): void{
-    this.http.delete(`http://localhost:8080/api/vorlesungstermin/delete/${id}`).subscribe();
+  public async delete(id: number){
+    this.http.delete(`http://localhost:8080/api/vorlesungstermin/delete/${id}`).toPromise();
   }
 }

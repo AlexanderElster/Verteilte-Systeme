@@ -12,6 +12,8 @@ import { AuthentifizierungService } from 'src/app/services/authentifizierung.ser
 export class NeudozentComponent implements OnInit  {
 
   user: User;
+  passwortcheck = '';
+  passwortnichtident = false;
 
   constructor(
     private route: ActivatedRoute, 
@@ -19,16 +21,27 @@ export class NeudozentComponent implements OnInit  {
     private userService: UserServiceService,
     private loginService: AuthentifizierungService) {
       this.user = new User(null, null, null, null, null, null, null, null, null, null);
+      this.passwortnichtident = true;
   }
 
   ngOnInit(): void {
     if(!this.loginService.istUserEingeloggt()) {
       this.router.navigate(['/login'])
     }
+
+    if (this.passwortcheck === '') {
+      this.passwortnichtident = false;
+    }
   }
 
   onSubmit() {
-    this.userService.save(this.user).subscribe(result => this.gotoDozenteliste());
+    if(this.passwortcheck === this.user.passwort ) {
+      this.passwortnichtident = false;
+      this.userService.save(this.user).subscribe(result => this.gotoDozenteliste());
+    }
+    else {
+      this.passwortnichtident = true;
+    }
   }
 
   gotoDozenteliste() {

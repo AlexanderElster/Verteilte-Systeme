@@ -1,5 +1,6 @@
 package com.dhbw.verteiltesysteme.backend.controller;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,8 +39,9 @@ public class UserController {
 	
 	@PostMapping(path ="/login")
 	@ResponseBody
-	public User login (@RequestBody LoginUser logUser )
+	public User login (@RequestBody LoginUser logUser ) throws NoSuchElementException
 	{
+		try {
 		String userEmail = logUser.getEmail();
 		String userPasswort = logUser.getPasswort();
 		Optional<User> loginUser = repository.findByEmail(userEmail);
@@ -57,7 +57,14 @@ public class UserController {
 						
 				}
 		
+		
 		return notFound;
+		
+		} 
+		catch(NoSuchElementException e) {
+			User notFound = new User();
+			return notFound;
+		}
 	}
 
 	@PostMapping(path = "/add")
@@ -70,40 +77,4 @@ public class UserController {
 		repository.deleteById(id);
 	}
 
-	@RequestMapping(path = "/update", method = { RequestMethod.PATCH, RequestMethod.POST })
-	public @ResponseBody boolean update(@RequestParam int id, @RequestParam String titel, @RequestParam String nachname,
-			@RequestParam String vorname, @RequestParam String passwort, @RequestParam String email,
-			@RequestParam String handynr) {
-		boolean updated = true;
-		Optional<User> result = repository.findById(id);
-
-		if (result.isEmpty()) {
-			updated = false;
-		} else {
-			User u = result.get();
-
-			if (!titel.equals("")) {
-				u.setTitel(titel);
-			}
-			if (!nachname.equals("")) {
-				u.setNachname(nachname);
-			}
-			if (!vorname.equals("")) {
-				u.setVorname(vorname);
-			}
-			if (!passwort.equals("")) {
-				u.setPasswort(passwort);
-			}
-			if (!email.equals("")) {
-				u.setEmail(email);
-			}
-			if (!handynr.equals("")) {
-				u.setHandynr(handynr);
-			}
-
-			repository.save(u);
-		}
-
-		return updated;
-	}
 }

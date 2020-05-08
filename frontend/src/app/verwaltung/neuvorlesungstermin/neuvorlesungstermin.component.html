@@ -36,9 +36,9 @@
             <div *ngIf="anfangszeit.touched && anfangszeit.invalid || endezeit.touched && endezeit.invalid" class="alert alert-danger">Bitte geben Sie die Zeit an.</div>
             <br>
             <button type="submit" class="btn btn-primary" [disabled]="vorlesungsForm.form.invalid"><i class="fas fa-check"></i>
-                {{"GENERAL.ADD" | translate}}</button>
+                Anlegen</button>
             <a style="margin-left: 20px;" class="btn btn-secondary" routerLink="/kalender"><i class="fas fa-times"></i>
-                {{"GENERAL.CANCEL" | translate}}</a>
+                Abbrechen</a>
         </form>
     </div>
 </div>

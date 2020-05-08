@@ -13,7 +13,6 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { DozentenlisteComponent } from './verwaltung/dozentenliste/dozentenliste.component';
 import { NeudozentComponent } from './verwaltung/neudozent/neudozent.component';
-import { UpdatedozentComponent } from './verwaltung/updatedozent/updatedozent.component';
 import { KurslisteComponent } from './verwaltung/kursliste/kursliste.component';
 import { NeukursComponent } from './verwaltung/neukurs/neukurs.component';
 import { KalenderComponent } from './verwaltung/kalender/kalender.component';
@@ -21,6 +20,7 @@ import { NavbarComponent } from './general/navbar/navbar.component';
 import { VeranstaltungenlisteComponent } from './verwaltung/veranstaltungenliste/veranstaltungenliste.component';
 import { NeuveranstaltungComponent } from './verwaltung/neuveranstaltung/neuveranstaltung.component';
 import { NeuvorlesungsterminComponent } from './verwaltung/neuvorlesungstermin/neuvorlesungstermin.component';
+import { TerminloeschenComponent } from './verwaltung/terminloeschen/terminloeschen.component';
 
 @NgModule({
   declarations: [
@@ -28,14 +28,14 @@ import { NeuvorlesungsterminComponent } from './verwaltung/neuvorlesungstermin/n
     LoginComponent,
     DozentenlisteComponent,
     NeudozentComponent,
-    UpdatedozentComponent,
     KurslisteComponent,
     NeukursComponent,
     KalenderComponent,
     NavbarComponent,
     VeranstaltungenlisteComponent,
     NeuveranstaltungComponent,
-    NeuvorlesungsterminComponent
+    NeuvorlesungsterminComponent,
+    TerminloeschenComponent
   ],
   imports: [
     BrowserModule,

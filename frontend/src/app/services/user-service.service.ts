@@ -31,10 +31,6 @@ export class UserServiceService {
     this.http.delete(`http://localhost:8080/api/user/delete/${id}`).subscribe();
   }
 
-  public update(user: User): void{
-    this.http.post(`http://localhost:8080/api/user/update/${user.id}`, user).subscribe();
-  }
-
   public async login(logUser : LoginUser) {
     return this.http.post<User>('http://localhost:8080/api/user/login', logUser).toPromise();
   }

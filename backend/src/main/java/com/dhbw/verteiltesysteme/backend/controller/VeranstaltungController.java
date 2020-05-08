@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dhbw.verteiltesysteme.backend.entities.Kurs;
@@ -89,26 +86,4 @@ public class VeranstaltungController {
 		repository.deleteById(id);
 	}
 
-	@RequestMapping(path = "/update", method = { RequestMethod.PATCH, RequestMethod.POST })
-	public @ResponseBody boolean update(@RequestParam int id, @RequestParam User dozent, @RequestParam int anztermine) {
-		boolean updated = true;
-		Optional<Veranstaltung> result = repository.findById(id);
-
-		if (result.isEmpty()) {
-			updated = false;
-		} else {
-			Veranstaltung v = result.get();
-
-			if (dozent != null) {
-				v.setDozent(dozent);
-			}
-
-			if (!(anztermine == 0)) {
-				v.setAnztermine(anztermine);
-			}
-			repository.save(v);
-		}
-
-		return updated;
-	}
 }

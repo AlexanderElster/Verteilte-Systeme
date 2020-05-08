@@ -3,35 +3,51 @@
     <div class="card-body">
         <form (ngSubmit)="onSubmit()" #userForm="ngForm">
             <div class="form-group">
-                <label for="titel">{{ "USERTABLE.TITLE" | translate}}</label>
+                <label for="titel">Titel</label>
                 <input type="text"  [(ngModel)]="user.titel" class="form-control"
-                    id="titel" name="titel" placeholder="{{ 'USERFORM.PLACEHOLDER.TITEL' | translate}}"  #titel="ngModel">
+                    id="titel" name="titel"  #titel="ngModel">
             </div>
             <div class="form-group">
-                <label for="firstname">{{"USERTABLE.FIRSTNAME" | translate}}</label>
+                <label for="firstname">Vorname</label>
                 <input type="text" [(ngModel)]="user.vorname" class="form-control" id="firstname" name="firstname"
-                    placeholder="{{'USERFORM.PLACEHOLDER.FIRSTNAME' |translate}}" required #firstname="ngModel">
+                     required #firstname="ngModel">
             </div>
             <div *ngIf="firstname.touched && firstname.invalid" class="alert alert-danger">{{"USERFORM.WARNING.FIRSTNAME" | translate}}</div>
             <div class="form-group">
-                <label for="lastname">{{"USERTABLE.LASTNAME"|translate}}</label>
+                <label for="lastname">Nachname</label>
                 <input type="text" [(ngModel)]="user.nachname" class="form-control" id="lastname" name="lastname"
-                    placeholder="{{'USERFORM.PLACEHOLDER.LASTNAME' |translate}}" required #lastname="ngModel">
+                     required #lastname="ngModel">
             </div>
             <div *ngIf="lastname.touched && lastname.invalid" class="alert alert-danger">{{"USERFORM.WARNING.LASTNAME" | translate}}</div>
             <div class="form-group">
-                <label for="email">{{ "USERTABLE.EMAIL" | translate}}</label>
+                <label for="email">E-Mail</label>
                 <input type="text" [(ngModel)]="user.email" class="form-control" id="email" name="email"
-                    placeholder="{{'USERFORM.PLACEHOLDER.EMAIL' | translate}}" required #email="ngModel">
+                     required #email="ngModel">
             </div>
             <div *ngIf="email.touched && email.invalid" class="alert alert-danger">{{"USERFORM.WARNING.EMAIL" | translate}}</div>
             <div class="form-group">
-                <label for="mobile">{{"USERTABLE.MOBILE" | translate}}</label>
-                <input type="text" [(ngModel)]="user.handynr" class="form-control" id="mobile" name="mobile"
-                    placeholder="{{'USERFORM.PLACEHOLDER.MOBILE' | translate}}" required #mobile="ngModel">
+                <label for="passwort">Passwort</label>
+                <input type="password" [(ngModel)]="user.passwort" class="form-control" id="passwort" name="passwort"
+                     required #passwort="ngModel">
             </div>
-            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-primary"><i class="fas fa-check"></i>  {{"GENERAL.ADD" | translate}}</button>
-            <a style="margin-left: 20px;" class="btn btn-secondary" routerLink="/dozentenliste"><i class="fas fa-times"></i>  {{"GENERAL.CANCEL" | translate}}</a>
+            <div *ngIf="passwort.touched && passwort.invalid" class="alert alert-danger">Passwort wird benötigt</div>
+            <div class="form-group">
+                <label for="passwortcheck">Passwort wiederholen</label>
+                <input type="password" class="form-control" id="passwortcheck" name="passwortcheck" [(ngModel)]="passwortcheck" required>
+            </div>
+            <div *ngIf="passwortnichtident" class="alert alert-danger">Passwörter stimmen nicht überein</div>
+            <div class="form-group">
+                <label for="mobile">Handynummer</label>
+                <input type="text" [(ngModel)]="user.handynr" class="form-control" id="mobile" name="mobile"
+                     required #mobile="ngModel">
+            </div>
+            <div *ngIf="mobile.touched && mobile.invalid" class="alert alert-danger">Handynummer wird benötigt</div>
+            <div class="form-group">
+                <label for="admin" class="form-check-label">Admin</label>
+                <input type="checkbox" [(ngModel)]="user.admin" class="form-check-input" id="admin" name="admin" #admin="ngModel" style="margin-left: 10px;">
+            </div>
+            <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-primary"><i class="fas fa-check"></i>  Anlegen</button>
+            <a style="margin-left: 20px;" class="btn btn-secondary" routerLink="/dozentenliste"><i class="fas fa-times"></i>  Abbrechen</a>
         </form>
     </div>
 </div>

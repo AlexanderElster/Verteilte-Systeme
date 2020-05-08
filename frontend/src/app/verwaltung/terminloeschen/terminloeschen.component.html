@@ -1,0 +1,14 @@
+<h1 class="custom-heading">Vorlesungstermin loeschen</h1>
+<div class="card my-5">
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()" #vorlLoeschenForm="ngForm">
+            <div class="form-group">
+                <label for="vorlesungsId">ID der Vorlesung</label>
+                <input type="number"  [(ngModel)]="vorlId" class="form-control"
+                    id="vorlesungsId" name="vorlesungsId"   required>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!vorlLoeschenForm.form.valid" ><i class="fas fa-minus"></i>  Löschen</button>
+            <a style="margin-left: 20px;" class="btn btn-secondary" routerLink="/kalender"><i class="fas fa-times"></i>  Abbrechen</a>
+        </form>
+    </div>
+</div>

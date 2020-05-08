@@ -9,7 +9,6 @@
               <tr>
                 <th scope="col">Kursbezeichnung</th>
                 <th scope="col">Studiengangsleiter</th>
-                <th scope="col">Bearbeiten</th>
                 <th scope="col">Löschen</th>
               </tr>
             </thead>
@@ -17,7 +16,6 @@
               <tr *ngFor="let kurs of kurse">
                 <td>{{ kurs.kursbezeichnung }}</td>
                 <td>{{ kurs.studleiter.titel }} {{ kurs.studleiter.vorname }} {{ kurs.studleiter.nachname }}</td>
-                <td><button class="btn btn-secondary" ><i class="fas fa-user-edit"></i></button></td>
                 <td><button class="btn btn-danger" (click)="deleteKurs(kurs)"><i class="fas fa-trash"></i></button></td>
               </tr>
             </tbody>

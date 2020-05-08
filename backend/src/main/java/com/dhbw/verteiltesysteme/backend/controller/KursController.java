@@ -69,17 +69,4 @@ public class KursController {
 	public void delete(@PathVariable int id) {
 		repository.deleteById(id);
 	}
-
-	/*
-	 * 
-	 * @RequestMapping(path="/update", method= {RequestMethod.PATCH,
-	 * RequestMethod.POST}) public @ResponseBody boolean update(@RequestParam int
-	 * id, @RequestParam String kursbezeichnung, @RequestParam User studleiter) {
-	 * boolean updated = true; Optional<Kurs> result = repository.findById(id);
-	 * 
-	 * if (result.isEmpty()) { updated = false; } else { Kurs k = result.get(); if
-	 * (studleiter != null) { k.setStudleiter(studleiter); } if
-	 * (!kursbezeichnung.equals("")) { k.setKursbezeichnung(kursbezeichnung); }
-	 * repository.save(k); } return updated; }
-	 */
 }

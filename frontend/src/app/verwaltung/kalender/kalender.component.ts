@@ -39,7 +39,6 @@ export class KalenderComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     if (!this.loginService.istUserEingeloggt()) {
       this.router.navigate(['/login'])
     }
@@ -81,7 +80,6 @@ export class KalenderComponent implements OnInit {
           this.vorlTermine.push(vorlesungstermin)
         }
       }
-      console.log(this.veranstaltungen);
       let d = this.selectedDate;
       let m = d.getMonth();
       let y = d.getFullYear();
@@ -119,7 +117,6 @@ export class KalenderComponent implements OnInit {
             om = "0" + om;
           }
           let givenDate = oy + "-" + om + "-" + od;
-          console.log("givenDate: " + givenDate);
 
           entry.innerHTML = '<a  href=javascript: putDate(' + zahl + ')>' + zahl + '</a>';
           entry.hidden = false;
@@ -132,25 +129,19 @@ export class KalenderComponent implements OnInit {
                 vorlTermin.veranstaltung = veranstaltung;
               }
             }
-            console.log("givenDate==vorl");
-            console.log("vorlTermin.veranstaltung")
-            console.log(vorlTermin.veranstaltung);
-            console.log(givenDate === vorlTermin.datum);
             if (givenDate === vorlTermin.datum) {
-              entry.innerHTML = '<a  href=javascript: putDate(' + zahl + ')>' + zahl + '</a><br>Vorlesungstermin' + vorlTermin.anfangszeit + vorlTermin.veranstaltung.bezeichnung;
+              entry.innerHTML = '<a  href=javascript: putDate(' + zahl + ')>' + zahl + '</a><br><b>ID</b><br>' + vorlTermin.id + '<br><b>Bezeichnung<br></b> ' + vorlTermin.veranstaltung.bezeichnung+ '<br><b>Beginn<br></b> ' + vorlTermin.anfangszeit + '<br><b>Ende<br></b> ' + vorlTermin.endezeit + '<br>';
             }
-            console.log(entry);
           }
 
           //heutiges Datum hervorheben
           if (hD.getDate() == dx.getDate() &&
             hD.getMonth() == dx.getMonth() &&
             hD.getFullYear() == dx.getFullYear()) {
-            entry.style.fontWeight = 'bold';
           }
         }
         else {
-          //entry.innerHTML = "";
+          entry.innerHTML = "";
 
           if (i >= dateDay) {//Wenn Kalenderende
             //Zelle = hidden
@@ -212,5 +203,10 @@ export class KalenderComponent implements OnInit {
     this.selectedDate = d;
     this.getSelectedMonth();
     this.loadCalendar();
+  }
+
+  deleteTermin(id: number) {
+    this.vorlesungsterminService.delete(id)
+    window.location.reload()
   }
 }//class

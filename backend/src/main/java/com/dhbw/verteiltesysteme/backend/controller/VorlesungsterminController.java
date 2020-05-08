@@ -70,33 +70,4 @@ public class VorlesungsterminController {
 	public void delete(@PathVariable int id) {
 		repository.deleteById(id);
 	}
-
-	/*
-	 * 
-	 * @RequestMapping(path = "/update", method = { RequestMethod.PATCH,
-	 * RequestMethod.POST }) public @ResponseBody boolean update(@RequestParam int
-	 * id, @RequestParam Veranstaltung veranstaltung,
-	 * 
-	 * @RequestParam int tag, @RequestParam int monat, @RequestParam int
-	 * jahr, @RequestParam int stdAnf,
-	 * 
-	 * @RequestParam int minAnf, @RequestParam int stdEnd, @RequestParam int minEnd)
-	 * { boolean updated = true; Optional<Vorlesungstermin> result =
-	 * repository.findById(id);
-	 * 
-	 * if (!result.isEmpty()) { updated = false; } else { Vorlesungstermin v =
-	 * result.get();
-	 * 
-	 * if (veranstaltung != null) { v.setVeranstaltung(veranstaltung); }
-	 * 
-	 * if (tag != -1 && monat != -1 && jahr != -1) { v.setDatum(tag, monat, jahr); }
-	 * 
-	 * if (stdAnf != -1 && minAnf != -1) { v.setAnfangszeit(stdAnf, minAnf); }
-	 * 
-	 * if (stdEnd != -1 && minEnd != -1) { v.setEndezeit(stdEnd, minEnd); }
-	 * 
-	 * repository.save(v); }
-	 * 
-	 * return updated; }
-	 */
 }
