@@ -18,7 +18,7 @@ export class VeranstaltungServiceService {
    }
 
    public async findById(id: number)  {
-    return this.http.get<Veranstaltung>(`http://localhost:8080/api/user/${id}`).toPromise();
+    return this.http.get<Veranstaltung>(`http://localhost:8080/api/veranstaltung/${id}`).toPromise();
   }
 
    public save(veranstaltung: Veranstaltung) {
